@@ -1,19 +1,23 @@
 {
-  "name": "texttoorder",
-  "version": "0.0.0",
-  "private": true,
+  "name": "textToOrder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/la-luo/TextToOrder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/la-luo/TextToOrder/issues"
+  },
+  "homepage": "https://github.com/la-luo/TextToOrder#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "concurrently": "^4.1.0"
   }
 }
