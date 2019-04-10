@@ -11,8 +11,8 @@ class App extends Component {
     message: null,
     intervalIsSet: false,
     idToDelete: null,
-    idToUpdate: null,
-    objectToUpdate: null
+    // idToUpdate: null,
+    // objectToUpdate: null
   };
 
   // when component mounts, first thing it does is fetch all existing data in our db
@@ -20,10 +20,10 @@ class App extends Component {
   // changed and implement those changes into our UI
   componentDidMount() {
     this.getDataFromDb();
-    if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getDataFromDb, 1000);
-      this.setState({ intervalIsSet: interval });
-    }
+    // if (!this.state.intervalIsSet) {
+    //   let interval = setInterval(this.getDataFromDb, 1000);
+    //   this.setState({ intervalIsSet: interval });
+    // }
   }
 
   // never let a process live forever 
@@ -43,7 +43,7 @@ class App extends Component {
   // our first get method that uses our backend api to 
   // fetch data from our data base
   getDataFromDb = () => {
-    fetch("http://localhost:3001/api/getData")
+    fetch("http://localhost:3001/api/getMessage")
       .then(data => data.json())
       .then(res => this.setState({ data: res.data }));
   };
@@ -57,7 +57,7 @@ class App extends Component {
       ++idToBeAdded;
     }
 
-    axios.post("http://localhost:3001/api/putData", {
+    axios.post("http://localhost:3001/api/putMessage", {
       id: idToBeAdded,
       message: message
     });
@@ -74,7 +74,7 @@ class App extends Component {
       }
     });
 
-    axios.delete("http://localhost:3001/api/deleteData", {
+    axios.delete("http://localhost:3001/api/deleteMessage", {
       data: {
         id: objIdToDelete
       }
@@ -84,19 +84,19 @@ class App extends Component {
 
   // our update method that uses our backend api
   // to overwrite existing data base information
-  updateDB = (idToUpdate, updateToApply) => {
-    let objIdToUpdate = null;
-    this.state.data.forEach(dat => {
-      if (dat.id === idToUpdate) {
-        objIdToUpdate = dat._id;
-      }
-    });
+  // updateDB = (idToUpdate, updateToApply) => {
+  //   let objIdToUpdate = null;
+  //   this.state.data.forEach(dat => {
+  //     if (dat.id === idToUpdate) {
+  //       objIdToUpdate = dat._id;
+  //     }
+  //   });
 
-    axios.post("http://localhost:3001/api/updateData", {
-      id: objIdToUpdate,
-      update: { message: updateToApply }
-    });
-  };
+  //   axios.post("http://localhost:3001/api/updateData", {
+  //     id: objIdToUpdate,
+  //     update: { message: updateToApply }
+  //   });
+  // };
 
 
   // here is our UI
@@ -110,7 +110,7 @@ class App extends Component {
           {data.length <= 0
             ? "NO DB ENTRIES YET"
             : data.map(dat => (
-                <li style={{ padding: "10px" }} key={data.message}>
+                <li style={{ padding: "10px" }} key={dat.id}>
                   <span style={{ color: "gray" }}> id: </span> {dat.id} <br />
                   <span style={{ color: "gray" }}> data: </span>
                   {dat.message}
@@ -139,7 +139,7 @@ class App extends Component {
             DELETE
           </button>
         </div>
-        <div style={{ padding: "10px" }}>
+        {/* <div style={{ padding: "10px" }}>
           <input
             type="text"
             style={{ width: "200px" }}
@@ -159,7 +159,7 @@ class App extends Component {
           >
             UPDATE
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }

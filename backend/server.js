@@ -2,14 +2,17 @@ const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const dbRoute = require("./config/keys").mongoURI;
-const mongoose = require("mongoose");
-const Data = require("./data");
-var cors = require('cors');
+const API_PORT = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
+const logger = require('morgan');
+const dbRoute = require("./config/keys").mongoURI;
+var cors = require('cors');
+const mongoose = require("mongoose");
+const User = require('./api/models/userModel');
+const Message = require("./api/models/messageModel");
+const indexRoutes = require('./api/routes/index');
+const usersRoutes = require('./api/routes/usersRoutes');
+require('./config/passport');
 
 mongoose 
   .connect(dbRoute)
@@ -17,8 +20,7 @@ mongoose
   .catch(err => console.log(err));
 
 var app = express();
-const API_PORT = process.env.PORT || 3001;
-
+usersRoutes(app)
 
 app.use(cors());
 const router = express.Router();
@@ -29,30 +31,32 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
+// Express Session
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
 // this is our get method
 // this method fetches all available data in our database
-router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
+router.get("/getMessage", (req, res) => {
+  Message.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
 });
 
-// this is our update method
-// this method overwrites existing data in our database
-router.post("/updateData", (req, res) => {
-  const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
+router.delete("/deleteMessage", (req, res) => {
   const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
+  Message.findOneAndDelete(id, err => {
     if (err) return res.send(err);
     return res.json({ success: true });
   });
@@ -60,7 +64,7 @@ router.delete("/deleteData", (req, res) => {
 
 // this is our create methid
 // this method adds new data in our database
-router.post("/putData", (req, res) => {
+router.post("/putMessage", (req, res) => {
   let data = new Data();
 
   const { id, message } = req.body;
@@ -81,6 +85,10 @@ router.post("/putData", (req, res) => {
 
 // append /api for our http requests
 app.use("/api", router);
+
+app.use(function(req, res) {
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
