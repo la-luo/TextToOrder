@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'), User = mongoose.model('User');
-const bcrypt = require('bcryptjs');
 
 exports.create_a_user = function(req, res) {
     const password = req.body.password;
@@ -7,7 +6,6 @@ exports.create_a_user = function(req, res) {
 
     if (password == password2) {
         const newUser = new User({
-            name: req.body.name,
             email: req.body.email,
             username: req.body.username,
             password: req.body.password

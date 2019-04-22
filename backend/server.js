@@ -1,8 +1,9 @@
 const express = require('express');
+const session = require('express-session');
 const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const API_PORT = process.env.PORT || 3001;
+const API_PORT = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 const logger = require('morgan');
 const dbRoute = require("./config/keys").mongoURI;
@@ -21,14 +22,10 @@ mongoose
   .catch(err => console.log(err));
 
 var app = express();
-usersRoutes(app)
-
 app.use(cors());
-
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(logger("dev"));
 
 // Express Session
@@ -38,16 +35,13 @@ app.use(session({
   resave: true
 }));
 
-// Passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
-// append /api for our http requests
-app.use("/api", router);
+app.use(usersRoutes);
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-// launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
