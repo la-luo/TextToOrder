@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from "axios";
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 
 
 class SessionForm extends React.Component {
@@ -11,34 +10,19 @@ class SessionForm extends React.Component {
             username: '',
             password: '',
             password2: '',
-            email: '',
-            name: ''
+            email: ''
         };
 
         this.update = this.update.bind(this);
-        this.putUserToDB = this.putUserToDB.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    putUserToDB(e) {
+
+    handleSubmit(e) {
         e.preventDefault();
 
-        const newUser = Object.assign({}, this.state);
-        axios.post("http://localhost:5000/register", newUser);
-    };
-
-    handleLogin(e) {
-        e.preventDefault();
-
-        const {username, password} = this.state;
-        const credentials = {username, password};
-        axios.post("http://localhost:5000/login", credentials)
-        .then(function(response){
-            if (response.data.redirect === 'validUser'){
-                window.location = "http://localhost:3000/#/userprofile/"
-            } 
-        });
+        const user = Object.assign({}, this.state);
+        this.props.processForm(user);
     };
 
     update(field) {
@@ -47,23 +31,10 @@ class SessionForm extends React.Component {
         }) 
     }
 
-    handleLogout(e) {
-        e.preventDefault();
-        axios("http://localhost:5000/logout")
-        .then(function(response){
-            if (response.data.redirect === 'noUser'){
-                window.location = "http://localhost:3000/#/login/"
-            } else if (response.data.redirect === 'validUser'){
-                window.location = "http://localhost:3000/#/logout/"
-            } 
-        });
-    }
-
-
     render() {
-       
+       if (this.props.formType === 'signup') {
         return (
-           <div>
+            <div>
             <form onSubmit={this.putUserToDB}>
                 <div>Sign Up</div>
                 <label>Username:
@@ -81,6 +52,11 @@ class SessionForm extends React.Component {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+          </div>
+        )
+       }else {        
+        return (
+           <div>
 
             <form onSubmit={this.handleLogin}> 
                 <div>Log In</div>
@@ -93,15 +69,12 @@ class SessionForm extends React.Component {
                 <input type="submit" value="Submit" />
             </form>
 
-
-            <button onClick={this.handleLogout}>
-                Log out    
-            </button>
            </div>
-        )
+        )}
+
     }
 
     
 }
 
-export default SessionForm;
+export default withRouter(SessionForm);
