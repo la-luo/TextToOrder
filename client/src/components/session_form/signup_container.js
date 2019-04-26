@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 }};
 
 const mapDispatchToProps = dispatch => ({
-  processForm: userData => dispatch(signupUser(userData))
+  processForm: (userData) => dispatch(signupUser(userData))
 });
 
 export default connect(

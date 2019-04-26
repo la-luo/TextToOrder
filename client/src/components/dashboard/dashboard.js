@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 
 
-class Splash extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,11 +17,11 @@ class Splash extends React.Component {
 
         return (
             <div>
-                <p>Hello</p>
+                <p>dashboard</p>
             </div>
         )
     }
 
 }
 
-export default Splash;
+export default Dashboard;

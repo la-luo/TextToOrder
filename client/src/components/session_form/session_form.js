@@ -35,7 +35,7 @@ class SessionForm extends React.Component {
        if (this.props.formType === 'signup') {
         return (
             <div>
-            <form onSubmit={this.putUserToDB}>
+            <form onSubmit={this.handleSubmit}>
                 <div>Sign Up</div>
                 <label>Username:
                     <input type="text" value={this.state.username} onChange={this.update("username")} />
@@ -58,7 +58,7 @@ class SessionForm extends React.Component {
         return (
            <div>
 
-            <form onSubmit={this.handleLogin}> 
+            <form onSubmit={this.handleSubmit}> 
                 <div>Log In</div>
                 <label>Username:
                     <input type="text" value={this.state.username} onChange={this.update("username")} />

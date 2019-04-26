@@ -15,7 +15,6 @@ import {
       } else {
         return {
           id: action.payload.id,
-          handle: action.payload.handle,
           username: action.payload.username };
         }
       default:
