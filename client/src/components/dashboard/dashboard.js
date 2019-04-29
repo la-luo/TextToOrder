@@ -1,6 +1,13 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
+
+const mapStateToProps = (state) => {
+    return {
+        session: state.session
+    }
+};
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -24,4 +31,4 @@ class Dashboard extends React.Component {
 
 }
 
-export default Dashboard;
+export default connect(mapStateToProps, null)(Dashboard);

@@ -33,7 +33,8 @@ class Splash extends React.Component {
                 
                 {this.state.currentUser==='noUser'? <div><Link to='/signup'>Signup</Link>
                 <Link to='/login'>Login</Link></div>: <div><p>Hello {this.state.currentUser}</p><p>logout</p></div>}
-                
+                <div className="splash">
+                </div>
             </div>
         )
     }
