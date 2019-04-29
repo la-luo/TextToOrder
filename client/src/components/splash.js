@@ -30,10 +30,12 @@ class Splash extends React.Component {
 
         return (
             <div>
-                
-                {this.state.currentUser==='noUser'? <div><Link to='/signup'>Signup</Link>
-                <Link to='/login'>Login</Link></div>: <div><p>Hello {this.state.currentUser}</p><p>logout</p></div>}
+                <div className="nav-bar">
+                {this.state.currentUser==='noUser'? <div className="session"><Link className="signup" to='/signup'>Signup</Link>
+                <Link className="login" to='/login'>Login</Link></div>: <div><p>Hello {this.state.currentUser}</p><p>logout</p></div>}
+                </div>
                 <div className="splash">
+                    <h1>Text To Order</h1>
                 </div>
             </div>
         )
