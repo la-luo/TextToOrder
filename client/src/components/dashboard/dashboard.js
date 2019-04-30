@@ -24,7 +24,9 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <p>dashboard</p>
+                <p>Your Restaurant</p>
+                <p>Your Menu</p>
+
             </div>
         )
     }

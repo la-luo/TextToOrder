@@ -10,6 +10,7 @@ const dbRoute = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
 const User = require('./api/models/User');
 const usersRoutes = require('./api/routes/users');
+const smsRoutes = require('./api/routes/sms');
 const passport = require('passport');
 require('./config/passport');
 
@@ -27,6 +28,7 @@ app.use(logger("dev"));
 app.use(passport.initialize());
 
 app.use('/api/users', usersRoutes);
+app.use('/', smsRoutes);
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
