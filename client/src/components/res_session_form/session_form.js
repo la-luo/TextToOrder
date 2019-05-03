@@ -76,7 +76,7 @@ class SessionForm extends React.Component {
                     </div>
                 </form>
                 <div className="text-center">Already have an account? 
-                   <a href="restaurant/login">Login here</a>
+                   <a href="/restaurant/login">Login here</a>
                 </div>
           </div>
         :<div className="signup-form">
@@ -99,7 +99,7 @@ class SessionForm extends React.Component {
                 <input type="submit" className="btn btn-primary btn-lg" value="Login" />
             </form>
             <div className="text-center">Want to become a partner restaurant?
-                <a href="restaurant/signup">Sign up</a>
+                <a href="/restaurant/signup">Sign up</a>
             </div>
         </div>}
         </div>

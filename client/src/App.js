@@ -9,10 +9,11 @@ import { receiveCurrentUser, logoutUser } from './actions/session_actions';
 import store from './store/store';
 // Components
 import Splash from './components/splash';
+//customer components
 import Signup from './components/cus_session_form/signup_container';
 import Login from './components/cus_session_form/login_container';
-import Dashboard from './components/dashboard/dashboard';
-
+import cusDashboard from './components/cus_dashboard/dashboard';
+//merchant components
 import resSignup from './components/res_session_form/signup_container';
 import resLogin from './components/res_session_form/login_container';
 
@@ -38,9 +39,9 @@ class App extends Component {
             <Route exact path="/" component={Splash}  />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
+            <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
             <AuthRoute exact path="/restaurant/login" component={resLogin} />
             <AuthRoute exact path="/restaurant/signup" component={resSignup} />
-            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <Redirect to="/404" />
             </Switch>
           </div>
