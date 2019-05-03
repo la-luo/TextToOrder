@@ -1,12 +1,24 @@
 .splash {
-    width: 100%;
-    height: 800px;
-    // background: url(./bg.jpg) no-repeat;
+    float:left;
+    width: 40%;
+    height: 600px;
+    background: url(./texting.gif) no-repeat;
     background-size: cover;
     margin-top: -20px;
   }
 
-  .form-control {
+.intro {
+    float: right;
+    width: 50%;
+    text-align: center;
+    h1{
+        padding-top: 200px;
+        font-size: 96px;
+      }
+  }
+
+
+.form-control {
     box-shadow: none;		
     font-weight: normal;
     font-size: 13px;
@@ -236,6 +248,17 @@
     }
 }
 
-h1{
-    font-size: 96px;
-  }
+footer{
+    background: #2d3246;;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;  
+
+    a{
+        color: gainsboro;
+    }
+    a:hover{
+        color: white;
+    }
+}

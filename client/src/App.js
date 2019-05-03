@@ -8,7 +8,7 @@ import setAuthToken from './util/set_auth_token';
 import { receiveCurrentUser, logoutUser } from './actions/session_actions';
 import store from './store/store';
 // Components
-import Splash from './components/splash';
+import Splash from './components/homepage';
 //customer components
 import Signup from './components/cus_session_form/signup_container';
 import Login from './components/cus_session_form/login_container';

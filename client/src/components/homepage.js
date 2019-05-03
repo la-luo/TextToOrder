@@ -73,9 +73,16 @@ class Splash extends React.Component {
 	</div>
 </nav>
                 <div className="splash">
-                    <h1>Text To Order</h1>
                 </div>
-            </div>
+                <div className="intro">
+                  <h1>Text To Order</h1>
+                </div>
+
+			<footer>
+				<a href="/restaurant/signup">Be a Partner Restaurant</a>
+			</footer>
+
+	</div>
         )
     }
 
