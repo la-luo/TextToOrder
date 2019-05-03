@@ -31,50 +31,81 @@ class SessionForm extends React.Component {
         }) 
     }
 
+
     render() {
-       if (this.props.formType === 'signup') {
         return (
-            <div>
-            <form onSubmit={this.handleSubmit}>
-                <div>Sign Up</div>
-                <label>Username:
-                    <input type="text" value={this.state.username} onChange={this.update("username")} />
-                </label>
-                <label>Password:
-                    <input type="password" value={this.state.password} onChange={this.update("password")} />
-                </label>
-                <label>Confirm Password:
-                    <input type="password" value={this.state.password2} onChange={this.update("password2")} />
-                    
-                </label>
-                <label>Email:
-                    <input type="email" value={this.state.email} onChange={this.update("email")} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+        <div>
+            {this.props.formType === 'signup'?
+            <div className="signup-form">
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Sign Up</h2>
+                    <hr/>
+                    <p>Please fill in this form to create an account!</p>
+                    <div className="form-group">
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-paper-plane"></i></span>
+                            <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Email Address" required="required"/>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                            <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <div className="input-group">
+                            <span className="input-group-addon">
+                                <i className="fa fa-lock"></i>
+                                <i className="fa fa-check"></i>
+                            </span>
+                            <input type="password" value={this.state.password2} onChange={this.update("password2")} className="form-control" name="confirm_password" placeholder="Confirm Password" required="required"/>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="checkbox-inline"><input type="checkbox" required="required"/> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" className="btn btn-primary btn-lg" value="Sign up" />
+                    </div>
+                </form>
+                <div class="text-center">Already have an account? 
+                   <a href="/login">Login here</a>
+                </div>
           </div>
-        )
-       }else {        
-        return (
-           <div>
-
+        :<div className="signup-form">
             <form onSubmit={this.handleSubmit}> 
-                <div>Log In</div>
-                <label>Username:
-                    <input type="text" value={this.state.username} onChange={this.update("username")} />
-                </label>
-                <label>Password:
-                    <input type="password" value={this.state.password} onChange={this.update("password")} />
-                </label>
-                <input type="submit" value="Submit" />
+                <h2>Log In</h2>
+                <hr/>
+                <p>Welcome back!</p>
+                <div className="form-group">
+                    <div className="input-group">
+                        <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                        <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="input-group">
+                        <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                        <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
+                    </div>
+                </div>
+                <input type="submit" className="btn btn-primary btn-lg" value="Sign up" />
             </form>
-
-           </div>
+            <div class="text-center">Create an account for a sandbox?
+                <a href="/signup">Sign up</a>
+            </div>
+        </div>}
+        </div>
         )}
 
     }
 
-    
-}
 
 export default withRouter(SessionForm);
