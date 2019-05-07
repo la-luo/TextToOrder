@@ -7,9 +7,10 @@ class SessionForm extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
-            password2: '',
+            storename: '',
+            storeaddress:'',
+            firstname: '',
+            lastname: '',
             email: ''
         };
 
@@ -38,46 +39,39 @@ class SessionForm extends React.Component {
             {this.props.formType === 'signup'?
             <div className="signup-form">
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Sign Up</h2>
+                    <h2>Partner with us</h2>
                     <hr/>
                     <p>Please fill in this form to create an account!</p>
                     <div className="form-group">
                         <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                            <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
+                            <input type="text" value={this.state.storename} onChange={this.update("storename")} className="form-control" name="storename" placeholder="Store Name" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-paper-plane"></i></span>
-                            <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Email Address" required="required"/>
+                            <span className="input-group-addon"><i className="fa fa-map-pin"></i></span>
+                            <input type="text" value={this.state.storeaddress} onChange={this.update("storeaddress")} className="form-control" name="storeaddress" placeholder="Store Address" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
-                            <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
+                            <input type="text" value={this.state.firstname} onChange={this.update("firstname")} className="form-control" name="firstname" placeholder="First Name" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="input-group">
-                            <span className="input-group-addon">
-                                <i className="fa fa-lock"></i>
-                                <i className="fa fa-check"></i>
-                            </span>
-                            <input type="password" value={this.state.password2} onChange={this.update("password2")} className="form-control" name="confirm_password" placeholder="Confirm Password" required="required"/>
+                            <input type="text" value={this.state.lastname} onChange={this.update("lastname")} className="form-control" name="lastname" placeholder="Last Name" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <label className="checkbox-inline"><input type="checkbox" required="required"/> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                        <div className="input-group">
+                            <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Contact Email" required="required"/>
+                        </div>
                     </div>
                     <div className="form-group">
-                        <input type="submit" className="btn btn-primary btn-lg" value="Sign up" />
+                        <input type="submit" className="btn btn-primary btn-lg" value="Get Started" />
                     </div>
                 </form>
-                <div className="text-center">Already have an account? 
-                   <a href="/restaurant/login">Login here</a>
-                </div>
           </div>
         :<div className="signup-form">
             <form onSubmit={this.handleSubmit}> 

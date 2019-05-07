@@ -1,9 +1,9 @@
 .splash {
     float: right;
     width: 50%;
-    height: 600px;
+    height: 1000px;
     background: url(./texting.gif) no-repeat;
-    background-size: cover;
+    background-size: contain;
     margin-top: -20px;
   }
 
@@ -15,6 +15,12 @@
         padding-top: 200px;
         font-size: 96px;
       }
+  }
+
+section:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 
 
@@ -249,11 +255,12 @@
 }
 
 footer{
-    background: #2d3246;;
-    position: absolute;
-    bottom: 0;
+    background: #2d3246;
+    position: relative;
+    padding-bottom:50px; 
+    bottom: 0px;
     width: 100%;
-    height: 50px;  
+    height: 200px;  
 
     a{
         color: gainsboro;

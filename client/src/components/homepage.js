@@ -32,7 +32,7 @@ class Splash extends React.Component {
             <div>
 <nav className="navbar navbar-default navbar-expand-lg navbar-light">
 	<div className="navbar-header d-flex col">
-		<a className="navbar-brand" href="#">Brand Name</a>  		
+		<a className="navbar-brand" href="#">Text To Order</a>  		
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" className="navbar-toggle navbar-toggler ml-auto">
 			<span className="navbar-toggler-icon"></span>
 			<span className="icon-bar"></span>
@@ -41,42 +41,25 @@ class Splash extends React.Component {
 		</button>
 	</div>
 	<div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
-		<ul className="nav navbar-nav">
-			<li className="nav-item"><a href="#" className="nav-link">Home</a></li>
-			<li className="nav-item"><a href="#" className="nav-link">About</a></li>			
-			<li className="nav-item dropdown">
-				<a data-toggle="dropdown" className="nav-link dropdown-toggle" href="#">Services <b className="caret"></b></a>
-				<ul className="dropdown-menu">					
-					<li><a href="#" className="dropdown-item">Digital Marketing</a></li>
-				</ul>
-			</li>
-			<li className="nav-item active"><a href="#" className="nav-link">Pricing</a></li>
-			<li className="nav-item"><a href="#" className="nav-link">Blog</a></li>
-			<li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
-		</ul>
-		<form className="navbar-form form-inline">
-			<div className="input-group search-box">								
-				<input type="text" id="search" className="form-control" placeholder="Search here..."/>
-				<span className="input-group-addon"><i className="material-icons">&#xE8B6;</i></span>
-			</div>
-		</form>
 		{this.state.currentUser==='noUser'? 
 		<ul className="nav navbar-nav navbar-right ml-auto">
-         <li className="nav-item"><Link className="nav-link" to='/login'>Login</Link></li>
-		 <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Signup</Link></li>
+         <li className="nav-item"><Link className="nav-link" to='/login'>Sign In</Link></li>
+		 <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Sign Up</Link></li>
 		</ul>
 		 : 
 		 <div>
-		 <li className="nav-item"><Link className="nav-link" to='/signup'>Signup</Link></li>
+		 <li className="nav-item"><Link className="nav-link" to='/signup'>Sign Up</Link></li>
 		 <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
 		 </div>}		
 	</div>
 </nav>
+<section>
 				<div className="intro">
                   <h1>Text To Order</h1>
                 </div>
                 <div className="splash">
                 </div>
+</section>
 
 
 			<footer>
