@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const RestaurantSchema = new Schema({
+const MerchantSchema = new Schema({
     name: {
         type: String
     },
@@ -15,6 +15,6 @@ const RestaurantSchema = new Schema({
     }
 });
 
-const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
+const Merchant = mongoose.model('Merchant', MerchantSchema);
 
-module.exports = Restaurant;
+module.exports = Merchant;

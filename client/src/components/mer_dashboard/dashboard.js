@@ -24,7 +24,16 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <h1>Your Order History</h1>
+                <p>Your Restaurant List</p>
+                <label>
+                    <input placeholder="New Restaurant Name" />
+                </label>
+                <label>
+                    <input placeholder="New Restaurant Address" />
+                </label>
+                <label>
+                    <input placeholder="New Restaurant Introduction" />
+                </label>
 
             </div>
         )
