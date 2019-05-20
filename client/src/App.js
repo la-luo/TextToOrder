@@ -17,7 +17,7 @@ import cusDashboard from './components/cus_dashboard/dashboard';
 import merSignup from './components/mer_session_form/signup_container';
 import merLogin from './components/mer_session_form/login_container';
 import merDashboard from './components/mer_dashboard/dashboard';
-
+import Menu from './components/mer_dashboard/menu';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -44,6 +44,7 @@ class App extends Component {
             <AuthRoute exact path="/merchant/login" component={merLogin} />
             <AuthRoute exact path="/merchant/signup" component={merSignup} />
             <AuthRoute exact path="/merchant/dashboard" component={merDashboard} />
+            <Route exact path="/merchant/menu" component={Menu} />
             <Redirect to="/404" />
             </Switch>
           </div>

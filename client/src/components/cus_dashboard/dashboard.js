@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-class Dashboard extends React.Component {
+class cusDashboard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -32,4 +32,4 @@ class Dashboard extends React.Component {
 
 }
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, null)(cusDashboard);

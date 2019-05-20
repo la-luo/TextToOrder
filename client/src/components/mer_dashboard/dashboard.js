@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-class Dashboard extends React.Component {
+class merDashboard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,21 +24,15 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <p>Your Restaurant List</p>
-                <label>
-                    <input placeholder="New Restaurant Name" />
-                </label>
-                <label>
-                    <input placeholder="New Restaurant Address" />
-                </label>
-                <label>
-                    <input placeholder="New Restaurant Introduction" />
-                </label>
+                <h3>Your Restaurant Information</h3>
 
+                <h3>Your Menu</h3>
+
+                <h3>Order History</h3>
             </div>
         )
     }
 
 }
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, null)(merDashboard);
