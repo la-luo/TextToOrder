@@ -1,0 +1,49 @@
+.mer-signup {
+    float: right;
+    margin-right: 140px;
+    margin-top: -20px;
+}
+
+.cooking-splash {
+    float: left;
+    margin-top: 130px;
+    margin-left: 90px;
+    width: 600px;
+    height: 500px;
+    background: url(./cooking.gif) no-repeat;
+    background-size: contain;
+  }
+
+.slogan-1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    position: relative;
+    left:90px;
+    top: 40px;
+    font-size: 40px;
+    z-index: 1;
+}
+
+.slogan-2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    position: relative;
+    left:190px;
+    top: 55px;
+    font-size: 40px;
+    z-index: 1;
+}
+
+.mer-firstname {
+    float: left;
+    width: 50%;
+}
+
+.mer-lastname {
+    float: right;
+    width: 50%;
+}
+
+.mer-input {
+    width: 330px;
+}

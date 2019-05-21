@@ -58,7 +58,7 @@ section:after {
 }
 .navbar .navbar-brand b {
     font-weight: bold;
-    color: #33cabb;		
+    color: #19aa8d;		
 }
 .navbar .form-inline {
     display: inline-block;
@@ -94,7 +94,7 @@ section:after {
 }
 .navbar .nav .btn-primary, .navbar .nav .btn-primary:active {
     color: #fff;
-    background: #33cabb;
+    background: #19aa8d;
     padding-top: 8px;
     padding-bottom: 6px;
     vertical-align: middle;
@@ -103,7 +103,7 @@ section:after {
 .navbar .nav .btn-primary:hover, .navbar .nav .btn-primary:focus {		
     color: #fff;
     outline: none;
-    background: #31bfb1;
+    background: #179b81;
 }
 .navbar .navbar-right li:first-child a {
     padding-right: 30px;
@@ -125,7 +125,7 @@ section:after {
 }
 .navbar ul.nav li.open > a.get-started-btn {
     color: #fff;
-    background: #31bfb1 !important;
+    background: #179b81 !important;
 }
 .navbar .dropdown-menu {
     border-radius: 1px;
@@ -150,13 +150,7 @@ section:after {
     right: 0;
     font-size: 14px;
 }
-.navbar .dropdown-menu.form-wrapper a {		
-    color: #33cabb;
-    padding: 0 !important;
-}
-.navbar .dropdown-menu.form-wrapper a:hover{
-    text-decoration: underline;
-}
+
 .navbar .form-wrapper .hint-text {
     text-align: center;
     margin-bottom: 15px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom';
+import { withRouter, Link} from 'react-router-dom';
 
 
 class SessionForm extends React.Component {
@@ -11,7 +11,8 @@ class SessionForm extends React.Component {
             storeaddress:'',
             firstname: '',
             lastname: '',
-            email: ''
+            email: '',
+            currentUser: 'noUser'
         };
 
         this.update = this.update.bind(this);
@@ -33,17 +34,47 @@ class SessionForm extends React.Component {
     }
 
 
+
     render() {
         return (
         <div>
+            <nav className="navbar navbar-default navbar-expand-lg navbar-light">
+                <div className="navbar-header d-flex col">
+                    <a className="navbar-brand" href="/">Text To Order</a>  		
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" className="navbar-toggle navbar-toggler ml-auto">
+                        <span className="navbar-toggler-icon"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
+                    {this.state.currentUser==='noUser'? 
+                    <ul className="nav navbar-nav navbar-right ml-auto">
+                    <li className="nav-item"><Link className="nav-link" to='/login'>Sign In</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Sign Up</Link></li>
+                    </ul>
+                    : 
+                    <div>
+                    <li className="nav-item"><Link className="nav-link" to='/signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
+                    </div>}		
+                </div>
+            </nav>
+            <div className="slogan-1">Boost Your Business</div>
+            <div className="slogan-2">Pay a much lower service fee</div>
+
+
+            <div className="cooking-splash"></div>
+
             {this.props.formType === 'signup'?
-            <div className="signup-form">
+            <div className="signup-form mer-signup">
                 <form onSubmit={this.handleSubmit}>
                     <h2>Partner with us</h2>
                     <hr/>
                     <p>Please fill in this form to create an account!</p>
                     <div className="form-group">
-                        <div className="input-group">
+                        <div className="input-group mer-input">
                             <input type="text" value={this.state.storename} onChange={this.update("storename")} className="form-control" name="storename" placeholder="Store Name" required="required"/>
                         </div>
                     </div>
@@ -53,23 +84,23 @@ class SessionForm extends React.Component {
                             <input type="text" value={this.state.storeaddress} onChange={this.update("storeaddress")} className="form-control" name="storeaddress" placeholder="Store Address" required="required"/>
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mer-firstname">
                         <div className="input-group">
                             <input type="text" value={this.state.firstname} onChange={this.update("firstname")} className="form-control" name="firstname" placeholder="First Name" required="required"/>
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mer-lastname">
                         <div className="input-group">
                             <input type="text" value={this.state.lastname} onChange={this.update("lastname")} className="form-control" name="lastname" placeholder="Last Name" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <div className="input-group">
+                        <div className="input-group mer-input">
                             <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Contact Email" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <input type="submit" className="btn btn-primary btn-lg" value="Get Started" />
+                        <input type="submit" className="btn btn-primary btn-lg mer-input" value="Get Started" />
                     </div>
                 </form>
           </div>
