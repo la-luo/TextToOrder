@@ -5,6 +5,8 @@ import jwt_decode from 'jwt-decode';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const RECEIVE_MERCHANT = 'RECEIVE_MERCHANT';
+
 
 export const receiveCurrentUser = userData => {
   return {
@@ -12,6 +14,27 @@ export const receiveCurrentUser = userData => {
     payload: userData
   };
 };
+
+export const receiveMerchant = () => {
+  return {
+    type: RECEIVE_MERCHANT,
+    payload: {info: 'We will follow up shortly'}
+  };
+};
+
+export const merchantSignup = merchantData => dispatch => {
+  axios
+    .post('signup', merchantData)
+    .then(res => {
+      dispatch(receiveMerchant());
+    })
+    .catch(err =>
+      dispatch({
+        type: RECEIVE_ERRORS,
+        payload: err
+      })
+    );
+}
 
 export const signupUser = userData => dispatch => {
   axios

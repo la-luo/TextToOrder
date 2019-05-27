@@ -102,6 +102,7 @@ class SessionForm extends React.Component {
                     <div className="form-group">
                         <input type="submit" className="btn btn-primary btn-lg mer-input" value="Get Started" />
                     </div>
+                    <p>{this.props.session.info === undefined ? '': this.props.session.info } </p>
                 </form>
           </div>
         :<div className="signup-form">

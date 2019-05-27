@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -63,7 +63,7 @@ class Splash extends React.Component {
 
 
 			<footer>
-				<a href="/merchant/signup">Be a Partner Restaurant</a>
+				<a href="/merchants/signup">Be a Partner Restaurant</a>
 			</footer>
 
 	</div>

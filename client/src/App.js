@@ -41,10 +41,10 @@ class App extends Component {
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
-            <AuthRoute exact path="/merchant/login" component={merLogin} />
-            <AuthRoute exact path="/merchant/signup" component={merSignup} />
-            <AuthRoute exact path="/merchant/dashboard" component={merDashboard} />
-            <Route exact path="/merchant/menu" component={Menu} />
+            <AuthRoute exact path="/merchants/login" component={merLogin} />
+            <AuthRoute exact path="/merchants/signup" component={merSignup} />
+            <AuthRoute exact path="/merchants/dashboard" component={merDashboard} />
+            <Route exact path="/merchants/menu" component={Menu} />
             <Redirect to="/404" />
             </Switch>
           </div>

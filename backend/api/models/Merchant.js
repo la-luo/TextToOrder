@@ -3,14 +3,24 @@ const Schema = mongoose.Schema;
 
 
 const MerchantSchema = new Schema({
-    name: {
-        type: String
-    },
-    Address: {
+    storename: {
         type: String,
         index: true
     },
-    intro: {
+    address: {
+        type: String,
+    },
+    firstname: {
+        type: String
+    },
+    lastname: {
+        type: String
+    },
+    email: {
+        type: String,
+        index: true
+    },
+    password: {
         type: String
     }
 });
