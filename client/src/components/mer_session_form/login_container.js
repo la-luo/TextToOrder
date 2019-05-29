@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import LoginForm from './login_form';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../actions/session_actions';
+import { merchantLogin } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 }};
 
 const mapDispatchToProps = dispatch => ({
-  processForm: (userData) => dispatch(loginUser(userData))
+  processForm: (userData) => dispatch(merchantLogin(userData))
 });
 
 export default connect(

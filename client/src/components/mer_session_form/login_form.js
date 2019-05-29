@@ -7,11 +7,8 @@ class LoginForm extends React.Component {
         super(props);
 
         this.state = {
-            storename: '',
-            storeaddress:'',
-            firstname: '',
-            lastname: '',
             email: '',
+            password: '',
             currentUser: 'noUser'
         };
 
@@ -64,12 +61,12 @@ class LoginForm extends React.Component {
 
             <div className="signup-form mer-signup">
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Partner with us</h2>
+                    <h2>Welcome back!</h2>
                     <hr/>
-                    <p>{this.props.session.info === undefined ? 'Please fill in this form to create an account!': this.props.session.info }</p>
+                    <p>Sign in with your email address</p>
                     <div className="form-group">
                         <div className="input-group mer-input">
-                            <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Contact Email" required="required"/>
+                            <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Email" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
@@ -78,7 +75,7 @@ class LoginForm extends React.Component {
                         </div>
                    </div>
                     <div className="form-group">
-                        <input type="submit" className="btn btn-primary btn-lg mer-input" value="Get Started" />
+                        <input type="submit" className="btn btn-primary btn-lg mer-input" value="Sign in to your account" />
                     </div>
                 </form>
             </div>

@@ -6,6 +6,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_MERCHANT = 'RECEIVE_MERCHANT';
+export const RECEIVE_CURRENT_MERCHANT = 'RECEIVE_CURRENT_MERCHANT';
 
 
 export const receiveCurrentUser = userData => {
@@ -22,6 +23,13 @@ export const receiveMerchant = () => {
   };
 };
 
+export const receiveCurrentMerchant = merData => {
+  return {
+    type: RECEIVE_CURRENT_MERCHANT,
+    payload: merData
+  };
+};
+
 export const merchantSignup = merchantData => dispatch => {
   axios
     .post('signup', merchantData)
@@ -35,6 +43,29 @@ export const merchantSignup = merchantData => dispatch => {
       })
     );
 }
+
+export const merchantLogin = merData => dispatch => {
+  axios
+    .post('login', merData)
+    .then(res => {
+      // Save to localStorage
+      const { token } = res.data;
+      console.log(token);
+      localStorage.setItem('jwtToken', token);
+      // set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(receiveCurrentMerchant(decoded));
+    })
+    .catch(err =>
+      dispatch({
+        type: RECEIVE_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 export const signupUser = userData => dispatch => {
   axios

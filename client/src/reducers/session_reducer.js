@@ -1,6 +1,7 @@
 import {
     RECEIVE_CURRENT_USER,
-    RECEIVE_MERCHANT
+    RECEIVE_MERCHANT,
+    RECEIVE_CURRENT_MERCHANT
   } from '../actions/session_actions';
   
   const nullUser = Object.freeze({
@@ -21,6 +22,14 @@ import {
         }
       case RECEIVE_MERCHANT:
         return {info: action.payload.info}
+      case RECEIVE_CURRENT_MERCHANT:
+        if (Object.values(action.payload).length === 0) {
+          return nullUser
+        } else {
+          return {
+            id: action.payload.id,
+            email: action.payload.email };
+          }
       default:
         return state;
     }

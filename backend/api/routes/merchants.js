@@ -23,4 +23,43 @@ router.post('/signup', (req, res) => {
   });
 });
 
+router.post('/login', (req, res) => {
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+
+  Merchant.findOne({ email: req.body.email })
+    .then(merchant => {
+      if (!merchant) {
+        errors.email = "This merchant does not exist"
+        return res.status(404).json(errors);
+      }
+
+      bcrypt.compare(password, merchant.password)
+        .then(isMatch => {
+         if (isMatch) {
+          const payload = {id: merchant.id, email: merchant.email};
+
+          // using jwt per the docs
+          jwt.sign(
+            payload,
+            keys.secretOrPrivateKey,
+            // tells the key to expire in one hour
+
+            {expiresIn: 3600},
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token
+            });
+          });
+      } else {
+        errors.password = "Incorrect password"
+        return res.status(403).json(errors)
+      }
+    });
+  });
+});
+
 module.exports = router;
