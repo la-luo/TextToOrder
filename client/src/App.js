@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { AuthRoute, ProtectedRoute } from './util/route_util';
+import { AuthRoute, ProtectedRoute, MerAuthRoute, MerProtectedRoute } from './util/route_util';
 
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './util/set_auth_token';
@@ -41,9 +41,9 @@ class App extends Component {
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
-            <AuthRoute exact path="/merchants/login" component={merLogin} />
-            <AuthRoute exact path="/merchants/signup" component={merSignup} />
-            <AuthRoute exact path="/merchants/dashboard" component={merDashboard} />
+            <MerAuthRoute exact path="/merchants/login" component={merLogin} />
+            <MerAuthRoute exact path="/merchants/signup" component={merSignup} />
+            <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
             <Route exact path="/merchants/menu" component={Menu} />
             <Redirect to="/404" />
             </Switch>

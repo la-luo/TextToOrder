@@ -12,6 +12,16 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
     )} />
 );
 
+const MerAuth = ({ component: Component, path, loggedIn, exact }) => (
+    <Route path={path} exact={exact} render={(props) => (
+        !loggedIn ? (
+            <Component {...props} />
+        ) : (
+                <Redirect to="/merchants/dashboard" />
+            )
+    )} />
+);
+
 const Protected = ({ component: Component, path, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
         loggedIn ? (
@@ -22,10 +32,21 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
     )} />
 );
 
+const MerProtected = ({ component: Component, path, loggedIn, exact }) => (
+    <Route path={path} exact={exact} render={(props) => (
+        loggedIn ? (
+            <Component {...props} />
+        ) : (
+                <Redirect to="/merchants/login" />
+            )
+    )} />
+);
+
 const mapStateToProps = state => (
     { loggedIn: state.session.id }
 );
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
-
+export const MerAuthRoute = withRouter(connect(mapStateToProps)(MerAuth));
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
+export const MerProtectedRoute = withRouter(connect(mapStateToProps)(MerProtected));
