@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link} from 'react-router-dom';
 
 
-class SessionForm extends React.Component {
+class SignupForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -51,12 +51,12 @@ class SessionForm extends React.Component {
                 <div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
                     {this.state.currentUser==='noUser'? 
                     <ul className="nav navbar-nav navbar-right ml-auto">
-                    <li className="nav-item"><Link className="nav-link" to='/login'>Sign In</Link></li>
-                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to='/merchants/login'>Sign In</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/merchants/signup'>Sign Up</Link></li>
                     </ul>
                     : 
                     <div>
-                    <li className="nav-item"><Link className="nav-link" to='/signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to='/merchants/signup'>Sign Up</Link></li>
                     <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
                     </div>}		
                 </div>
@@ -67,12 +67,11 @@ class SessionForm extends React.Component {
 
             <div className="cooking-splash"></div>
 
-            {this.props.formType === 'signup'?
             <div className="signup-form mer-signup">
                 <form onSubmit={this.handleSubmit}>
                     <h2>Partner with us</h2>
                     <hr/>
-                    <p>Please fill in this form to create an account!</p>
+                    <p>{this.props.session.info === undefined ? 'Please fill in this form to create an account!': this.props.session.info }</p>
                     <div className="form-group">
                         <div className="input-group mer-input">
                             <input type="text" value={this.state.storename} onChange={this.update("storename")} className="form-control" name="storename" placeholder="Store Name" required="required"/>
@@ -102,36 +101,12 @@ class SessionForm extends React.Component {
                     <div className="form-group">
                         <input type="submit" className="btn btn-primary btn-lg mer-input" value="Get Started" />
                     </div>
-                    <p>{this.props.session.info === undefined ? '': this.props.session.info } </p>
                 </form>
-          </div>
-        :<div className="signup-form">
-            <form onSubmit={this.handleSubmit}> 
-                <h2>Log In</h2>
-                <hr/>
-                <p>Welcome back!</p>
-                <div className="form-group">
-                    <div className="input-group">
-                        <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                        <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <div className="input-group">
-                        <span className="input-group-addon"><i className="fa fa-lock"></i></span>
-                        <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
-                    </div>
-                </div>
-                <input type="submit" className="btn btn-primary btn-lg" value="Login" />
-            </form>
-            <div className="text-center">Want to become a partner restaurant?
-                <a href="/restaurant/signup">Sign up</a>
             </div>
-        </div>}
         </div>
         )}
 
     }
 
 
-export default withRouter(SessionForm);
+export default withRouter(SignupForm);

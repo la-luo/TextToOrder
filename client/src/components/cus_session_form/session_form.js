@@ -42,29 +42,22 @@ class SessionForm extends React.Component {
                     <hr/>
                     <p>Please fill in this form to create an account!</p>
                     <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                        <div className="input-group input-cus">
                             <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-paper-plane"></i></span>
+                        <div className="input-group input-cus">
                             <input type="email" value={this.state.email} onChange={this.update("email")} className="form-control" name="email" placeholder="Email Address" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                        <div className="input-group input-cus">
                             <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon">
-                                <i className="fa fa-lock"></i>
-                                <i className="fa fa-check"></i>
-                            </span>
+                        <div className="input-group input-cus">
                             <input type="password" value={this.state.password2} onChange={this.update("password2")} className="form-control" name="confirm_password" placeholder="Confirm Password" required="required"/>
                         </div>
                     </div>
@@ -85,14 +78,12 @@ class SessionForm extends React.Component {
                 <hr/>
                 <p>Welcome back!</p>
                 <div className="form-group">
-                    <div className="input-group">
-                        <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                    <div className="input-group input-cus">
                         <input type="text" value={this.state.username} onChange={this.update("username")} className="form-control" name="username" placeholder="Username" required="required"/>
                     </div>
                 </div>
                 <div className="form-group">
-                    <div className="input-group">
-                        <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                    <div className="input-group input-cus">
                         <input type="password" value={this.state.password} onChange={this.update("password")} className="form-control" name="password" placeholder="Password" required="required"/>
                     </div>
                 </div>

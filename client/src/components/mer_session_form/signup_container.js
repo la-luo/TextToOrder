@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import SessionForm from "./session_form";
+import SignupForm from "./signup_form";
 import { Link } from 'react-router-dom';
 import { merchantSignup } from '../../actions/session_actions';
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SessionForm);
+)(SignupForm);
