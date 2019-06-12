@@ -234,7 +234,16 @@ header {
 }
 
 .user-dashboard {
-    padding: 0 20px;
+    padding: 20px 20px;
+
+    label {
+        margin: 10px;
+    }
+
+    .form-control {
+        margin: 10px;
+        width: 50%;
+    }
 }
 
 .user-dashboard h1 {
