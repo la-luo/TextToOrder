@@ -17,8 +17,8 @@ import {
       } else {
         return {
           id: action.payload.id,
-          username: action.payload.username,
-          email: action.payload.email };
+          username: action.payload.username
+          };
         }
       case RECEIVE_MERCHANT:
         return {info: action.payload.info}
@@ -28,7 +28,13 @@ import {
         } else {
           return {
             id: action.payload.id,
-            email: action.payload.email };
+            email: action.payload.email,
+            storename: action.payload.storename,
+            address: action.payload.address,
+            firstname: action.payload.address,
+            lastname: action.payload.address,
+            intro: action.payload.intro
+           };
           }
       default:
         return state;

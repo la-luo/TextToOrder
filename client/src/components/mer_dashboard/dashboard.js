@@ -54,7 +54,12 @@ class merDashboard extends React.Component {
                             </header>
                         </div>
                         <div className="user-dashboard">
-
+                            <label>Store Name</label>
+                            <input className="form-control" placeholder="Teaspoon Mountain View" />
+                            <label>Store Name</label>
+                            <input className="form-control" placeholder="Teaspoon Mountain View" />
+                            <label>Store Name</label>
+                            <input className="form-control" placeholder="Teaspoon Mountain View" />
                         </div>
                     </div>
 

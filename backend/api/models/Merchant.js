@@ -8,7 +8,7 @@ const MerchantSchema = new Schema({
         index: true
     },
     address: {
-        type: String,
+        type: String
     },
     firstname: {
         type: String
@@ -19,6 +19,9 @@ const MerchantSchema = new Schema({
     email: {
         type: String,
         index: true
+    },
+    intro: {
+        type: String
     },
     password: {
         type: String
