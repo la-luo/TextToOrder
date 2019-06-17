@@ -26,15 +26,7 @@ import {
         if (Object.values(action.payload).length === 0) {
           return nullUser
         } else {
-          return {
-            id: action.payload.id,
-            email: action.payload.email,
-            storename: action.payload.storename,
-            address: action.payload.address,
-            firstname: action.payload.address,
-            lastname: action.payload.address,
-            intro: action.payload.intro
-           };
+          return action.payload;
           }
       default:
         return state;

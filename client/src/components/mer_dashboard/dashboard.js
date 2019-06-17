@@ -14,14 +14,14 @@ class merDashboard extends React.Component {
         super(props);
 
         this.state = {
-
+            email: 'demo2019@gmail.com'
         }
 
     }
 
 
     render() {
-
+        const email = this.state.email;
         return (
             <div className="home">
             <div className="container-fluid display-table">
@@ -54,12 +54,24 @@ class merDashboard extends React.Component {
                             </header>
                         </div>
                         <div className="user-dashboard">
+                           <label>Email {email}</label>
+                           <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label>First Name</label>
+                                    <input className="form-control" placeholder="La" />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label>Last Name</label>
+                                    <input className="form-control" placeholder="Luo" />
+                                </div>
+                            </div>
                             <label>Store Name</label>
                             <input className="form-control" placeholder="Teaspoon Mountain View" />
                             <label>Address</label>
                             <input className="form-control" placeholder="Teaspoon Mountain View" />
                             <label>Introduction</label>
                             <textarea className="form-control" placeholder="Teaspoon Mountain View" />
+
                         </div>
                     </div>
 
