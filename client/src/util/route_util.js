@@ -12,9 +12,9 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
     )} />
 );
 
-const MerAuth = ({ component: Component, path, loggedIn, exact }) => (
+const MerAuth = ({ component: Component, path, merLoggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
-        !loggedIn ? (
+        !merLoggedIn ? (
             <Component {...props} />
         ) : (
                 <Redirect to="/merchants/dashboard" />
@@ -32,9 +32,9 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
     )} />
 );
 
-const MerProtected = ({ component: Component, path, loggedIn, exact }) => (
+const MerProtected = ({ component: Component, path, merLoggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
-        loggedIn ? (
+        merLoggedIn ? (
             <Component {...props} />
         ) : (
                 <Redirect to="/merchants/login" />
@@ -43,7 +43,8 @@ const MerProtected = ({ component: Component, path, loggedIn, exact }) => (
 );
 
 const mapStateToProps = state => (
-    { loggedIn: state.session.id }
+    { loggedIn: state.session.username,
+      merLoggedIn: state.session.email }
 );
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));

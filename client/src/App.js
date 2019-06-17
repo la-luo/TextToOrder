@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AuthRoute, ProtectedRoute, MerAuthRoute, MerProtectedRoute } from './util/route_util';
-
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './util/set_auth_token';
-import { receiveCurrentUser, logoutUser } from './actions/session_actions';
+import { receiveCurrentUser, receiveCurrentMerchant, logoutUser } from './actions/session_actions';
 import store from './store/store';
 // Components
 import Splash from './components/homepage';
@@ -22,7 +21,11 @@ import Menu from './components/mer_dashboard/menu';
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
-  store.dispatch(receiveCurrentUser(decoded));
+  if (window.location.pathname === "/merchants/dashboard") {
+    store.dispatch(receiveCurrentMerchant(decoded));
+  } else {
+    store.dispatch(receiveCurrentUser(decoded));
+  }
 
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
@@ -41,9 +44,9 @@ class App extends Component {
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
-            <MerAuthRoute exact path="/merchants/login" component={merLogin} />
-            <MerAuthRoute exact path="/merchants/signup" component={merSignup} />
-            <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
+            <MerAuthRoute path="/merchants/login" component={merLogin} />
+            <MerAuthRoute path="/merchants/signup" component={merSignup} />
+            <MerProtectedRoute path="/merchants/dashboard" component={merDashboard} />
             <Route exact path="/merchants/menu" component={Menu} />
             <Redirect to="/404" />
             </Switch>

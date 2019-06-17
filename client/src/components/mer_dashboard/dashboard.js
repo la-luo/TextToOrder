@@ -12,16 +12,22 @@ const mapStateToProps = (state) => {
 class merDashboard extends React.Component {
     constructor(props) {
         super(props);
-
+        var session = this.props.session;
+        
         this.state = {
-            email: 'demo2019@gmail.com'
+            email: session.email,
+            firstname: session.firstname,
+            lastname: session.lastname,
+            storename: session.storename,
+            address: session.address,
+            intro: session.intro
         }
 
     }
 
 
     render() {
-        const email = this.state.email;
+        const {email, firstname, lastname, storename, address, intro} = this.state;
         return (
             <div className="home">
             <div className="container-fluid display-table">
@@ -44,7 +50,7 @@ class merDashboard extends React.Component {
                                 <div className="col-md-7">
                                     <nav className="navbar-default pull-left">
                                         <div className="navbar-header">
-                                        <a>Hello</a>
+                                        <a>Welcome back {firstname} {lastname}!</a>
                                         </div>
                                     </nav>
                                 </div>
@@ -58,19 +64,19 @@ class merDashboard extends React.Component {
                            <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label>First Name</label>
-                                    <input className="form-control" placeholder="La" />
+                                    <input className="form-control" placeholder={firstname} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label>Last Name</label>
-                                    <input className="form-control" placeholder="Luo" />
+                                    <input className="form-control" placeholder={lastname} />
                                 </div>
                             </div>
                             <label>Store Name</label>
-                            <input className="form-control" placeholder="Teaspoon Mountain View" />
+                            <input className="form-control" placeholder={storename} />
                             <label>Address</label>
-                            <input className="form-control" placeholder="Teaspoon Mountain View" />
+                            <input className="form-control" placeholder={address} />
                             <label>Introduction</label>
-                            <textarea className="form-control" placeholder="Teaspoon Mountain View" />
+                            <textarea className="form-control" placeholder={intro} />
 
                         </div>
                     </div>

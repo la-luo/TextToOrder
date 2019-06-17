@@ -8,6 +8,12 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_MERCHANT = 'RECEIVE_MERCHANT';
 export const RECEIVE_CURRENT_MERCHANT = 'RECEIVE_CURRENT_MERCHANT';
 
+export const receiveCurrentMerchant = merData => {
+  return {
+    type: RECEIVE_CURRENT_MERCHANT,
+    payload: merData
+  };
+};
 
 export const receiveCurrentUser = userData => {
   return {
@@ -23,12 +29,7 @@ export const receiveMerchant = () => {
   };
 };
 
-export const receiveCurrentMerchant = merData => {
-  return {
-    type: RECEIVE_CURRENT_MERCHANT,
-    payload: merData
-  };
-};
+
 
 export const merchantSignup = merchantData => dispatch => {
   axios
