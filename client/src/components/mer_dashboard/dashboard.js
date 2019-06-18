@@ -70,7 +70,16 @@ class merDashboard extends React.Component {
 
         if (showHome) {
             dashboardContent = (<form>
-            <label>Email {email}</label>
+             <div className="row">
+                 <div className="col-md-6 mb-3">
+                     <label>Email</label>
+                     <input disabled className="form-control" placeholder={email} />
+                 </div>
+                 <div className="col-md-6 mb-3">
+                     <label>Phone</label>
+                     <input disabled className="form-control" placeholder="2176939557" />
+                 </div>
+             </div>
             <div className="row">
                  <div className="col-md-6 mb-3">
                      <label>First Name</label>
