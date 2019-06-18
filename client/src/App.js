@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { AuthRoute, ProtectedRoute, MerAuthRoute, MerProtectedRoute } from './util/route_util';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './util/set_auth_token';
-import { receiveCurrentUser, receiveCurrentMerchant, logoutUser } from './actions/session_actions';
+import { receiveCurrentUser, receiveCurrentMerchant, logoutUser, logoutMerchant } from './actions/session_actions';
 import store from './store/store';
 // Components
 import Splash from './components/homepage';
@@ -29,8 +29,14 @@ if (localStorage.jwtToken) {
 
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
-    store.dispatch(logoutUser());
-    window.location.href = '/login';
+
+    if (window.location.pathname === "/merchants/dashboard") {
+      store.dispatch(logoutMerchant());
+      window.location.href = '/merchants/login';
+    } else {
+      store.dispatch(logoutUser());
+      window.location.href = '/login';
+    }
   }
 }
 

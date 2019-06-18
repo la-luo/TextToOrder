@@ -121,3 +121,9 @@ export const logoutUser = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(receiveCurrentUser({}));
 };
+
+export const logoutMerchant = () => dispatch => {
+  localStorage.removeItem('jwtToken');
+  setAuthToken(false);
+  dispatch(receiveCurrentMerchant({}));
+};
