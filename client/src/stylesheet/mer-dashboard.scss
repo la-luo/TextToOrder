@@ -244,6 +244,11 @@ header {
         margin: 10px;
         width: 50%;
     }
+
+    .btn-success{
+        background-color: #179b81;
+        margin: 10px;
+    }
 }
 
 .user-dashboard h1 {
@@ -510,6 +515,7 @@ header {
         display: inline-block;
         float: left;
         width: 100%;
+
 }
     .user-dashboard .header-rightside .header-top img {
         max-width: 41px !important;
