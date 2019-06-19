@@ -117,10 +117,10 @@ class merDashboard extends React.Component {
                         </div>
                         <div className="navi">
                             <ul>
-                                <li className="active"><a onClick={this.showHome}><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Home</span></a></li>
-                                <li><a onClick={this.showMenu}><i className="fa fa-list-alt" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Menu</span></a></li>
-                                <li><a onClick={this.showOrders}><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Orders</span></a></li>
-                                <li><a onClick={this.showSettings}><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></a></li>
+                                <li className={this.state.showHome ? 'active': null}><a onClick={this.showHome}><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Home</span></a></li>
+                                <li className={this.state.showMenu ? 'active': null}><a onClick={this.showMenu}><i className="fa fa-list-alt" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Menu</span></a></li>
+                                <li className={this.state.showOrders ? 'active': null}><a onClick={this.showOrders}><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Orders</span></a></li>
+                                <li className={this.state.showSettings ? 'active': null}><a onClick={this.showSettings}><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Setting</span></a></li>
                             </ul>
                         </div>
                     </div>
