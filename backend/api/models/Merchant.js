@@ -20,6 +20,10 @@ const MerchantSchema = new Schema({
         type: String,
         index: true
     },
+    phone: {
+        type: Number,
+        index: true
+    },
     intro: {
         type: String
     },

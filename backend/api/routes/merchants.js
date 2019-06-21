@@ -41,6 +41,7 @@ router.post('/login', (req, res) => {
          if (isMatch) {
           const payload = {id: merchant.id,
                           email: merchant.email,
+                          phone: merchant.phone,
                           firstname: merchant.firstname,
                           lastname: merchant.lastname,
                           storename: merchant.storename,

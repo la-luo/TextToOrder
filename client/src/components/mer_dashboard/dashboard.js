@@ -16,6 +16,7 @@ class merDashboard extends React.Component {
         
         this.state = {
             email: session.email,
+            phone: session.phone,
             firstname: session.firstname,
             lastname: session.lastname,
             storename: session.storename,
@@ -57,6 +58,7 @@ class merDashboard extends React.Component {
 
     render() {
         const {email, 
+               phone,
                firstname, 
                lastname, 
                storename, 
@@ -77,7 +79,7 @@ class merDashboard extends React.Component {
                  </div>
                  <div className="col-md-6 mb-3">
                      <label>Phone</label>
-                     <input disabled className="form-control" placeholder="2176939557" />
+                     <input disabled className="form-control" placeholder={phone} />
                  </div>
              </div>
             <div className="row">
@@ -101,7 +103,63 @@ class merDashboard extends React.Component {
 
             </form>);
         } else if (showMenu) {
-            dashboardContent = <div>menu</div>
+            dashboardContent =                <div className="table-wrapper">
+            <div className="table-title">
+                <div className="row">
+                    <div className="col-sm-6">
+                        <h2>Manage <b>Menu</b></h2>
+                    </div>
+                    <div className="col-sm-6">
+                        <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                        <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                    </div>
+                </div>
+            </div>
+            <table className="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <span className="custom-checkbox">
+                                <input type="checkbox" id="selectAll" />
+                                <label htmlFor="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span className="custom-checkbox">
+                                <input type="checkbox" id="checkbox1" name="options[]" value="1"/>
+                                <label htmlFor="checkbox1"></label>
+                            </span>
+                        </td>
+                        <td>Happy Burger</td>
+                        <td>Entry</td>
+                        <td>Beef burger, served with sweet patato fries and salad</td>
+                        <td>9.5</td>
+                        <td>
+                            <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div className="clearfix">
+                <div className="hint-text">Showing <b>5</b> out of <b>15</b> entries</div>
+                <ul className="pagination">
+                    <li className="page-item disabled"><a href="#">Previous</a></li>
+                    <li className="page-item active"><a href="#" className="page-link">1</a></li>
+                    <li className="page-item"><a href="#" className="page-link">2</a></li>
+                    <li className="page-item"><a href="#" className="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>     
         } else if (showOrders) {
             dashboardContent = <div>orders</div>
         } else {
