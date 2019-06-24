@@ -99,11 +99,11 @@ class merDashboard extends React.Component {
              <label>Introduction</label>
              <textarea className="form-control" placeholder={intro} />
 
-             <input type="submit" className="btn btn-success" value="Update"/>
+             <input type="submit" className="btn btn-success" value="Update your profile"/>
 
             </form>);
         } else if (showMenu) {
-            dashboardContent =                <div className="table-wrapper">
+            dashboardContent = <div className="table-wrapper">
             <div className="table-title">
                 <div className="row">
                     <div className="col-sm-6">
