@@ -2,7 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
-    total: {
-        type: Number
+    totalPrice: {
+        type: Number,
+        min: 0
+    },
+    timestamps: {
+        type: Date,
+        default: Date.now
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
+
+module.exports = mongoose.model('Order', OrderSchema);
+
