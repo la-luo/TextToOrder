@@ -1,5 +1,6 @@
 const mongoose = requrie('mongoose');
 const Schema = mongoose.Schema;
+const ItemSchema = require('./Item').ItemSchema;
 
 const CategorySchema = new Schema ({
     merchant: {
@@ -10,12 +11,13 @@ const CategorySchema = new Schema ({
         type: String,
         required: true
     },
-    items: {
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
-    }
+    items: [ItemSchema]
 });
 
-module.exports = mongoose.model('Category', CategorySchema);
+const Category = mongoose.model('Category', CategorySchema);
 
+module.exports = {
+    CategorySchema: CategorySchema,
+    Category: Category
+}
 

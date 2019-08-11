@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const OrderSchema = require('./Order').OrderSchema;
 
 const UserSchema = new Schema({
     email: {
@@ -15,10 +15,7 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
-    orders: {
-        type: Schema.Types.ObjectId,
-        ref: 'Order'
-    }
+    orders: [OrderSchema]
 });
 
 const User = mongoose.model('User', UserSchema);

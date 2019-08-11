@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const CategorySchema = require('./Category').CategorySchema;
 
 const MerchantSchema = new Schema({
     storename: {
@@ -33,7 +33,8 @@ const MerchantSchema = new Schema({
     password: {
         type: String,
         require: true
-    }
+    },
+    categories: [CategorySchema]
 });
 
 const Merchant = mongoose.model('Merchant', MerchantSchema);
