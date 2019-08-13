@@ -11,11 +11,11 @@ const mapStateToProps = (state) => {
 class Menu extends React.Component {
     constructor(props) {
         super(props);
+        var session = this.props.session;
 
         this.state = {
-
+            categories: session.categories
         }
-
     }
 
 

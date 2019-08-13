@@ -46,7 +46,8 @@ router.post('/login', (req, res) => {
                           lastname: merchant.lastname,
                           storename: merchant.storename,
                           address: merchant.address,
-                          intro: merchant.intro};
+                          intro: merchant.intro,
+                          categories: merchant.categories};
 
           // using jwt per the docs
           jwt.sign(
