@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
                 </div>
             </nav>
 
-            <div className="signup-form mer-signup">
+            <div className="signup-form">
                 <form onSubmit={this.handleSubmit}>
                     <h2>Welcome back!</h2>
                     <hr/>

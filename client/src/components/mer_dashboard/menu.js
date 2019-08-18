@@ -22,7 +22,6 @@ class Menu extends React.Component {
     render() {
         const categories = this.state.categories;
         var items = categories.map((el, idx) => el.items).flat();
-        console.log(items);
 
         return (
             <div>
