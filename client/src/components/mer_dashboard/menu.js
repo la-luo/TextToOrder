@@ -20,10 +20,12 @@ class Menu extends React.Component {
 
 
     render() {
+        const categories = this.state.categories;
+        var items = categories.map((el, idx) => el.items).flat();
+        console.log(items);
 
         return (
             <div>
-            <div className="container">
             <div className="table-wrapper">
                 <div className="table-title">
                     <div className="row">
@@ -31,7 +33,7 @@ class Menu extends React.Component {
                             <h2>Manage Menu</h2>
                         </div>
                         <div className="col-sm-6">
-                            <a href="#addEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                            <a href="#addEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
                             <a href="#deleteEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
@@ -53,22 +55,27 @@ class Menu extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <span className="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1"/>
-                                    <label htmlFor="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>Happy Burger</td>
-                            <td>Entry</td>
-                            <td>Beef burger, served with sweet patato fries and salad</td>
-                            <td>9.5</td>
-                            <td>
-                                <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr>
+      
+                        {items.map((item, idx) => 
+                          (
+                            <tr key={idx}>
+                                <td>
+                                    <span className="custom-checkbox">
+                                        <input type="checkbox" id="checkbox1" name="options[]" value="1"/>
+                                        <label htmlFor="checkbox1"></label>
+                                    </span>
+                                </td>
+                                <td>{item.name}</td>
+                                <td>{item.categoryName}</td>
+                                <td>{item.description}</td>
+                                <td>{item.price}</td>
+                                <td>
+                                    <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>)
+                          )
+                        }
                     </tbody>
                 </table>
                 <div className="clearfix">
@@ -80,8 +87,7 @@ class Menu extends React.Component {
                         <li className="page-item"><a href="#" className="page-link">Next</a></li>
                     </ul>
                 </div>
-            </div>
-        </div>
+           </div>
         <div id="addEmployeeModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">

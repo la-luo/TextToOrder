@@ -1,7 +1,6 @@
 import React from 'react';
-import {Redirect, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-
+import Menu from './menu';
 
 const mapStateToProps = (state) => {
     return {
@@ -103,54 +102,7 @@ class merDashboard extends React.Component {
 
             </form>);
         } else if (showMenu) {
-            dashboardContent = <div className="table-wrapper">
-            <div className="table-title">
-                <div className="row">
-                    <div className="col-sm-6">
-                        <h2>Manage Menu</h2>
-                    </div>
-                    <div className="col-sm-6">
-                        <a href="#addEmployeeModal" className="btn btn-modal" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                        <a href="#deleteEmployeeModal" className="btn btn-modal" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
-                    </div>
-                </div>
-            </div>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            <span className="custom-checkbox">
-                                <input type="checkbox" id="selectAll" />
-                                <label htmlFor="selectAll"></label>
-                            </span>
-                        </th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <span className="custom-checkbox">
-                                <input type="checkbox" id="checkbox1" name="options[]" value="1"/>
-                                <label htmlFor="checkbox1"></label>
-                            </span>
-                        </td>
-                        <td>Happy Burger</td>
-                        <td>Entry</td>
-                        <td>Beef burger, served with sweet patato fries and salad</td>
-                        <td>9.5</td>
-                        <td>
-                            <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>     
+            dashboardContent = <Menu /> 
         } else if (showOrders) {
             dashboardContent = <div>orders</div>
         } else {
