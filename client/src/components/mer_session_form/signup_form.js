@@ -64,7 +64,6 @@ class SignupForm extends React.Component {
             <div className="slogan-1">Boost Your Business</div>
             <div className="slogan-2">Pay a much lower service fee</div>
 
-
             <div className="cooking-splash"></div>
 
             <div className="signup-form mer-signup">

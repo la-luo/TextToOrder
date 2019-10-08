@@ -21,7 +21,10 @@ class Menu extends React.Component {
 
     render() {
         const categories = this.state.categories;
-        var items = categories.map((el, idx) => el.items).flat();
+        var items = [];
+        for(var el of categories) {
+            items = items.concat(el.items);
+        }
 
         return (
             <div>
