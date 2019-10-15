@@ -15,10 +15,9 @@ router.post('/add',
         }
 
         const newItem = new Item({
-            category: req.params.categoryId,
             merchant: req.merchant.id,
             name: req.body.name,
-            categoryName: req.body.categoryName,
+            category: req.body.category,
             price: req.body.price,
             description: req.body.description
         });

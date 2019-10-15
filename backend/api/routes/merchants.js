@@ -47,7 +47,9 @@ router.post('/login', (req, res) => {
                           storename: merchant.storename,
                           address: merchant.address,
                           intro: merchant.intro,
-                          categories: merchant.categories};
+                          items: merchant.items};
+          
+          console.log(payload);
 
           // using jwt per the docs
           jwt.sign(

@@ -22,10 +22,10 @@ class Menu extends React.Component {
 
         this.state = {
             name:'',
-            categoryName:'',
+            category:'',
             price:'',
             description: '',
-            categories: session.categories
+            items: session.items
         }
 
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
@@ -37,7 +37,7 @@ class Menu extends React.Component {
 
         const newItem = {
             name: this.state.name,
-            categoryName: this.state.categoryName,
+            category: this.state.category,
             price:this.state.price,
             Description: this.state.description
         }
@@ -48,11 +48,7 @@ class Menu extends React.Component {
 
 
     render() {
-        const categories = this.state.categories;
-        var items = [];
-        for(var el of categories) {
-            items = items.concat(el.items);
-        }
+        const items = this.state.items;
 
         return (
             <div>
@@ -96,7 +92,7 @@ class Menu extends React.Component {
                                     </span>
                                 </td>
                                 <td>{item.name}</td>
-                                <td>{item.categoryName}</td>
+                                <td>{item.category}</td>
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>
@@ -131,9 +127,20 @@ class Menu extends React.Component {
                                 <label>Name</label>
                                 <input type="text" className="form-control" required/>
                             </div>
-                            <div className="form-group">
-                                <label>Category</label>
-                                <input type="email" className="form-control" required/>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <label className="input-group-text" htmlFor="inputGroupSelect01">Category</label>
+                                </div>
+                                <select className="custom-select" id="inputGroupSelect01">
+                                    <option defaultValue>Choose...</option>
+                                    <option value="1">Appetizers</option>
+                                    <option value="2">Breakfast</option>
+                                    <option value="3">Desserts</option>
+                                    <option value="4">Drinks</option>
+                                    <option value="5">Lunch</option>
+                                    <option value="6">Mains</option>
+                                    <option value="7">Specials</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label>Price</label>
