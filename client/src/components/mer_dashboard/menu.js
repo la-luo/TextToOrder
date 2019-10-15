@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import { createItem } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,14 +8,42 @@ const mapStateToProps = (state) => {
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        createItem: item_data => dispatch(createItem(item_data))
+    }
+
+}
+
 class Menu extends React.Component {
     constructor(props) {
         super(props);
         var session = this.props.session;
 
         this.state = {
+            name:'',
+            categoryName:'',
+            price:'',
+            description: '',
             categories: session.categories
         }
+
+        this.handleAddSubmit = this.handleAddSubmit.bind(this);
+
+    }
+
+    handleAddSubmit(e) {
+        e.preventDefault();
+
+        const newItem = {
+            name: this.state.name,
+            categoryName: this.state.categoryName,
+            price:this.state.price,
+            Description: this.state.description
+        }
+
+        this.props.createItem(newItem);
+
     }
 
 
@@ -93,7 +121,7 @@ class Menu extends React.Component {
         <div id="addEmployeeModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                    <form>
+                    <form onSubmit={this.handleAddSubmit}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Add Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -104,16 +132,16 @@ class Menu extends React.Component {
                                 <input type="text" className="form-control" required/>
                             </div>
                             <div className="form-group">
-                                <label>Email</label>
+                                <label>Category</label>
                                 <input type="email" className="form-control" required/>
                             </div>
                             <div className="form-group">
-                                <label>Address</label>
-                                <textarea className="form-control" required></textarea>
+                                <label>Price</label>
+                                <input typr="text" className="form-control" required/>
                             </div>
                             <div className="form-group">
-                                <label>Phone</label>
-                                <input type="text" className="form-control" required/>
+                                <label>Description</label>
+                                <textarea className="form-control" required/>
                             </div>					
                         </div>
                         <div className="modal-footer">
@@ -133,7 +161,7 @@ class Menu extends React.Component {
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div className="modal-body">					
-                            <div className="form-group">
+                        <   div className="form-group">
                                 <label>Name</label>
                                 <input type="text" className="form-control" required/>
                             </div>
@@ -142,13 +170,13 @@ class Menu extends React.Component {
                                 <input type="email" className="form-control" required/>
                             </div>
                             <div className="form-group">
-                                <label>Description</label>
-                                <textarea className="form-control" required></textarea>
+                                <label>Price</label>
+                                <input typr="text" className="form-control" required/>
                             </div>
                             <div className="form-group">
-                                <label>Price</label>
-                                <input type="text" className="form-control" required/>
-                            </div>					
+                                <label>Description</label>
+                                <textarea className="form-control" required/>
+                            </div>						
                         </div>
                         <div className="modal-footer">
                             <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
@@ -167,7 +195,7 @@ class Menu extends React.Component {
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div className="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
+                            <p>Are you sure you want to delete this Item?</p>
                             <p className="text-warning"><small>This action cannot be undone.</small></p>
                         </div>
                         <div className="modal-footer">
@@ -184,4 +212,4 @@ class Menu extends React.Component {
 
 }
 
-export default connect(mapStateToProps, null)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

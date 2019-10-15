@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Menu from './menu';
+import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
@@ -25,12 +25,14 @@ class merDashboard extends React.Component {
             showMenu: false,
             showOrders: false,
             showSettings: false
+        
         }
 
         this.showHome = this.showHome.bind(this);
         this.showMenu = this.showMenu.bind(this);
         this.showOrders = this.showOrders.bind(this);
         this.showSettings = this.showSettings.bind(this);
+
 
     }
 
@@ -53,6 +55,7 @@ class merDashboard extends React.Component {
         e.preventDefault();
         this.setState({ showHome: false, showMenu: false, showOrders: false, showSettings: true});
     }
+
 
 
     render() {
