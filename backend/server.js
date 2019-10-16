@@ -1,7 +1,4 @@
 const express = require('express');
-const createError = require('http-errors');
-const cookieParser = require('cookie-parser');
-const path = require("path");
 const API_PORT = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 const logger = require('morgan');
@@ -9,10 +6,9 @@ const dbRoute = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
 const usersRoutes = require('./api/routes/users');
 const merchantsRoutes = require('./api/routes/merchants');
-const itemRoutes = require('./api/routes/items');
 const smsRoutes = require('./api/routes/sms');
 const passport = require('passport');
-require('./config/passport');
+require('./config/passport')(passport);
 
 mongoose 
   .connect(dbRoute, { useNewUrlParser: true })
@@ -28,8 +24,7 @@ app.use(logger("dev"));
 app.use(passport.initialize());
 
 app.use('/api/users', usersRoutes);
-app.use('/merchants', merchantsRoutes);
-app.use('/items', itemRoutes);
+app.use('/api/merchants', merchantsRoutes);
 app.use('/', smsRoutes);
 
 app.use(function(req, res) {

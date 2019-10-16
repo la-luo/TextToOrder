@@ -21,7 +21,7 @@ import Menu from './components/mer_dashboard/menu';
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
-  if (window.location.pathname === "/merchants/dashboard") {
+  if (window.location.pathname === "/merchants-dashboard") {
     store.dispatch(receiveCurrentMerchant(decoded));
   } else {
     store.dispatch(receiveCurrentUser(decoded));
@@ -30,9 +30,9 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
 
-    if (window.location.pathname === "/merchants/dashboard") {
+    if (window.location.pathname === "/merchants-dashboard") {
       store.dispatch(logoutMerchant());
-      window.location.href = '/merchants/login';
+      window.location.href = '/merchants-login';
     } else {
       store.dispatch(logoutUser());
       window.location.href = '/login';
@@ -50,11 +50,11 @@ class App extends Component {
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
-            <MerAuthRoute path="/merchants/login" component={merLogin} />
-            <MerAuthRoute path="/merchants/signup" component={merSignup} />
-            <MerProtectedRoute path="/merchants/dashboard" component={merDashboard} />
-            <Route exact path="/merchants/menu" component={Menu} />
-            <Redirect to="/404" />
+            <MerAuthRoute exact path="/merchants-login" component={merLogin} />
+            <MerAuthRoute exact path="/merchants-signup" component={merSignup} />
+            <MerProtectedRoute exact path="/merchants-dashboard" component={merDashboard} />
+            <Route exact path="/merchant-menu" component={Menu} />
+            <Redirect to="/merchants-login" />
             </Switch>
           </div>
         </BrowserRouter>

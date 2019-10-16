@@ -48,12 +48,12 @@ class LoginForm extends React.Component {
                 <div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
                     {this.state.currentUser==='noUser'? 
                     <ul className="nav navbar-nav navbar-right ml-auto">
-                    <li className="nav-item"><Link className="nav-link" to='/merchants/login'>Sign In</Link></li>
-                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/merchants/signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to='/merchants-login'>Sign In</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/merchants-signup'>Sign Up</Link></li>
                     </ul>
                     : 
                     <div>
-                    <li className="nav-item"><Link className="nav-link" to='/merchants/signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to='/merchants-signup'>Sign Up</Link></li>
                     <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
                     </div>}		
                 </div>

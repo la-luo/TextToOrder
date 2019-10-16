@@ -28,19 +28,29 @@ class Menu extends React.Component {
             items: session.items
         }
 
+        this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
 
+    }
+
+    handldChange(field) {
+        return (e) => {
+            this.setState({[field]: e.target.value});
+        }
     }
 
     handleAddSubmit(e) {
         e.preventDefault();
 
         const newItem = {
+            merchant: this.props.session.id,
             name: this.state.name,
             category: this.state.category,
             price:this.state.price,
             Description: this.state.description
         }
+
+        console.log(newItem);
 
         this.props.createItem(newItem);
 
@@ -125,30 +135,30 @@ class Menu extends React.Component {
                         <div className="modal-body">					
                             <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" className="form-control" required/>
+                                <input type="text" value={this.state.name} onChange={this.handldChange('name')} className="form-control" required/>
                             </div>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <label className="input-group-text" htmlFor="inputGroupSelect01">Category</label>
                                 </div>
-                                <select className="custom-select" id="inputGroupSelect01">
+                                <select onChange={this.handldChange('category')} className="custom-select" id="inputGroupSelect01">
                                     <option defaultValue>Choose...</option>
-                                    <option value="1">Appetizers</option>
-                                    <option value="2">Breakfast</option>
-                                    <option value="3">Desserts</option>
-                                    <option value="4">Drinks</option>
-                                    <option value="5">Lunch</option>
-                                    <option value="6">Mains</option>
-                                    <option value="7">Specials</option>
+                                    <option value="Appetizers">Appetizers</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Desserts">Desserts</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Mains">Mains</option>
+                                    <option value="Specials">Specials</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <label>Price</label>
-                                <input typr="text" className="form-control" required/>
+                                <input value={this.state.price} onChange={this.handldChange('price')} type="text" className="form-control" required/>
                             </div>
                             <div className="form-group">
                                 <label>Description</label>
-                                <textarea className="form-control" required/>
+                                <textarea value={this.state.description} onChange={this.handldChange('description')} className="form-control" required/>
                             </div>					
                         </div>
                         <div className="modal-footer">

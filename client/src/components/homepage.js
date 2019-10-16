@@ -63,7 +63,7 @@ class Splash extends React.Component {
 
 
 			<footer>
-				<a href="/merchants/signup">Be a Partner Restaurant</a>
+				<a href="/merchants-signup">Be a Partner Restaurant</a>
 			</footer>
 
 	</div>
