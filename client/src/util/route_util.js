@@ -43,8 +43,8 @@ const MerProtected = ({ component: Component, path, merLoggedIn, exact }) => (
 );
 
 const mapStateToProps = state => (
-    { loggedIn: state.session.username,
-      merLoggedIn: state.session.email }
+    { loggedIn: Boolean(state.session.username),
+      merLoggedIn: Boolean(state.session.email) }
 );
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));

@@ -1,9 +1,8 @@
-// passport for Merchant
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
-require('../api/models/Merchant');
-const User = mongoose.model('Merchant');
+require('../api/models/User');
+const User = mongoose.model('User');
 const keys = require('./keys');
 
 const options = {

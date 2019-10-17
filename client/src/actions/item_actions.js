@@ -10,7 +10,7 @@ export const receiveItem = payload => ({
 
 export const createItem = itemData => dispatch => {
     axios
-        .post('item/add', itemData)
+        .post('api/merchants/add-item', itemData)
         .then(res => dispatch(receiveItem(res.data)))
         .catch(err => 
             dispatch({

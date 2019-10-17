@@ -5,6 +5,8 @@ const Merchant = require('../models/Merchant');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const Item = require('../models/Item').Item;
+const validateItemInput = require('../../validation/items');
 require("../../config/passport")(passport);
 
 
@@ -25,9 +27,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
 
-  const email = req.body.email;
   const password = req.body.password;
-
 
   Merchant.findOne({ email: req.body.email })
     .then(merchant => {
@@ -72,9 +72,9 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/item/add', 
+router.post('/add-item', 
     passport.authenticate('jwt', {session: false}),
-    (req, res) => {
+    async (req, res) => {
         console.log(req);
         
         const { errors, isValid } = validateItemInput(req.body);
@@ -91,6 +91,12 @@ router.post('/item/add',
             description: req.body.description
         });
 
+        let merchant = await Merchant.findOne({
+          _id: req.body.merchant
+        });
+
+        merchant.items.push(newItem);
+        merchant = await merchant.save();
         newItem
             .save()
             .then(item => res.json(item))
