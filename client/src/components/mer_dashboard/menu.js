@@ -1,16 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { createItem } from '../../actions/item_actions';
+import { createItem, fetchItems } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
-        session: state.session
+        session: state.session,
+        items: state.items
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        createItem: item_data => dispatch(createItem(item_data))
+        createItem: item_data => dispatch(createItem(item_data)),
+        fetchItems: merchantId => dispatch(fetchItems(merchantId))
     }
 
 }
@@ -18,20 +20,31 @@ const mapDispatchToProps = dispatch => {
 class Menu extends React.Component {
     constructor(props) {
         super(props);
-        var session = this.props.session;
 
         this.state = {
             name:'',
             category:'',
             price:'',
             description: '',
-            items: session.items
+            items: []
         }
+
+        this.merchantId = this.props.session.id;
 
         this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
 
     }
+
+    componentDidMount(){
+        this.props.fetchItems(this.merchantId);
+        this.setState({items: this.props.items});
+        
+    }
+
+    componentWillReceiveProps(nextProps) {
+    }
+
 
     handldChange(field) {
         return (e) => {
@@ -50,15 +63,16 @@ class Menu extends React.Component {
             Description: this.state.description
         }
 
-        console.log(newItem);
-
         this.props.createItem(newItem);
 
+       
     }
 
 
     render() {
-        const items = this.state.items;
+        const items = this.props.items;
+
+        if (!items) return <div />;
 
         return (
             <div>

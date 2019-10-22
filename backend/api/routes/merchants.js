@@ -75,7 +75,6 @@ router.post('/login', (req, res) => {
 router.post('/add-item', 
     passport.authenticate('jwt', {session: false}),
     async (req, res) => {
-        console.log(req);
         
         const { errors, isValid } = validateItemInput(req.body);
 
@@ -101,6 +100,12 @@ router.post('/add-item',
             .save()
             .then(item => res.json(item))
             .catch(err => res.json(err));
+});
+
+router.get('/:merchantId/items', (req, res) => {
+      Merchant.findById(req.params.merchantId)
+      .then(merchant => res.json(merchant.items))
+      .catch(err => res.json(err));
 });
 
 

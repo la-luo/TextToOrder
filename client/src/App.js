@@ -18,6 +18,9 @@ import merLogin from './components/mer_session_form/login_container';
 import merDashboard from './components/mer_dashboard/dashboard';
 import Menu from './components/mer_dashboard/menu';
 
+window.getState = store.getState;
+window.dispatch = store.dispatch;
+
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
