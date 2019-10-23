@@ -83,8 +83,8 @@ class Menu extends React.Component {
                             <h2>Manage Menu</h2>
                         </div>
                         <div className="col-sm-6">
-                            <a href="#addEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
-                            <a href="#deleteEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href={`/menu/${this.merchantId}`} className="btn" data-toggle="modal"><i className="material-icons">restaurant_menu</i> <span>Preview Menu</span></a>	    
+                            <a href="#addEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>					
                         </div>
                     </div>
                 </div>

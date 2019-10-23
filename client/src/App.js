@@ -8,6 +8,7 @@ import { receiveCurrentUser, receiveCurrentMerchant, logoutUser, logoutMerchant 
 import store from './store/store';
 // Components
 import Splash from './components/homepage';
+import PublicMenu from './components/public_menu';
 //customer components
 import Signup from './components/cus_session_form/signup_container';
 import Login from './components/cus_session_form/login_container';
@@ -50,6 +51,7 @@ class App extends Component {
           <div className="App">
             <Switch>
             <Route exact path="/" component={Splash}  />
+            <Route exact path="/menu/:merchantId" component={PublicMenu}  />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
