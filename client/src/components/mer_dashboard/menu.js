@@ -60,7 +60,7 @@ class Menu extends React.Component {
             name: this.state.name,
             category: this.state.category,
             price:this.state.price,
-            Description: this.state.description
+            description: this.state.description
         }
 
         this.props.createItem(newItem);
