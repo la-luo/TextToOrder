@@ -155,7 +155,7 @@ class Menu extends React.Component {
                                 <div className="input-group-prepend">
                                     <label className="input-group-text" htmlFor="inputGroupSelect01">Category</label>
                                 </div>
-                                <select onChange={this.handldChange('category')} className="custom-select" id="inputGroupSelect01">
+                                <select onChange={this.handldChange('category')} className="form-control" id="inputGroupSelect01">
                                     <option defaultValue>Choose...</option>
                                     <option value="Appetizers">Appetizers</option>
                                     <option value="Breakfast">Breakfast</option>
@@ -186,32 +186,43 @@ class Menu extends React.Component {
         <div id="editEmployeeModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                    <form>
+                <form onSubmit={this.handleEditSubmit}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Edit Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div className="modal-body">					
-                        <   div className="form-group">
-                                <label>Name</label>
-                                <input type="text" className="form-control" required/>
-                            </div>
                             <div className="form-group">
-                                <label>Category</label>
-                                <input type="email" className="form-control" required/>
+                                <label>Name</label>
+                                <input type="text" value={this.state.name} onChange={this.handldChange('name')} className="form-control" required/>
+                            </div>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <label className="input-group-text" htmlFor="inputGroupSelect01">Category</label>
+                                </div>
+                                <select onChange={this.handldChange('category')} className="form-control" id="inputGroupSelect01">
+                                    <option defaultValue>Choose...</option>
+                                    <option value="Appetizers">Appetizers</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Desserts">Desserts</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Mains">Mains</option>
+                                    <option value="Specials">Specials</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label>Price</label>
-                                <input typr="text" className="form-control" required/>
+                                <input value={this.state.price} onChange={this.handldChange('price')} type="text" className="form-control" required/>
                             </div>
                             <div className="form-group">
                                 <label>Description</label>
-                                <textarea className="form-control" required/>
-                            </div>						
+                                <textarea value={this.state.description} onChange={this.handldChange('description')} className="form-control" required/>
+                            </div>					
                         </div>
                         <div className="modal-footer">
                             <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" className="btn btn-info" value="Save"/>
+                            <input type="submit" className="btn btn-success" value="Save"/>
                         </div>
                     </form>
                 </div>

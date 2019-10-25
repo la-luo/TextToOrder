@@ -47,10 +47,10 @@ class Splash extends React.Component {
 		 <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Sign Up</Link></li>
 		</ul>
 		 : 
-		 <div>
+		 <ul className="nav navbar-nav navbar-right ml-auto">
 		 <li className="nav-item"><Link className="nav-link" to='/signup'>Sign Up</Link></li>
 		 <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
-		 </div>}		
+		 </ul>}		
 	</div>
 </nav>
 <section>

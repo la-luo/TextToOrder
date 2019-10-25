@@ -241,12 +241,13 @@ header {
     }
 
     .form-control {
-        margin: 10px;
-        width: 50%;
+        margin: auto;
+        
     }
 
-    .btn-success{
+    .btn-profile-success{
         background-color: #179b81;
+        color: #ffffff;
         margin-top: 40px;
         margin-left: 10px;
         width: 50%;
@@ -499,6 +500,7 @@ header {
 }
 
 }
+
 
 @media only screen and (max-device-width: 992px) {
     header .header-top li {

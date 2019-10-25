@@ -101,7 +101,7 @@ class merDashboard extends React.Component {
              <label>Introduction</label>
              <textarea className="form-control" placeholder={intro} />
 
-             <input type="submit" className="btn btn-success" value="Update your profile"/>
+             <input type="submit" className="btn btn-profile-success" value="Update your profile"/>
 
             </form>);
         } else if (showMenu) {
