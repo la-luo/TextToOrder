@@ -26,13 +26,16 @@ class Menu extends React.Component {
             category:'',
             price:'',
             description: '',
-            items: []
+            items: [],
+            selctedItem: ''
         }
 
         this.merchantId = this.props.session.id;
 
         this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
+
+        this.selectItem = this.selectItem.bind(this);
 
     }
 
@@ -44,6 +47,11 @@ class Menu extends React.Component {
 
     componentWillReceiveProps(nextProps) {
     }
+
+    selectItem(idx){
+        this.setState({selectItem: idx});
+    }
+
 
 
     handldChange(field) {
@@ -60,12 +68,16 @@ class Menu extends React.Component {
             name: this.state.name,
             category: this.state.category,
             price:this.state.price,
-            description: this.state.description
+            description: this.state.description,
         }
 
         this.props.createItem(newItem);
 
-       
+    }
+
+    handleEditSubmit(e) {
+        e.preventDefault();
+
     }
 
 
@@ -120,8 +132,8 @@ class Menu extends React.Component {
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>
-                                    <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="#editEmployeeModal" onClick={this.selectItem(idx)} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteEmployeeModal" onClick={this.selectItem(idx)} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>)
                           )
@@ -222,7 +234,7 @@ class Menu extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" className="btn btn-success" value="Save"/>
+                            <input type="submit" className="btn btn-success" value="Edit"/>
                         </div>
                     </form>
                 </div>
