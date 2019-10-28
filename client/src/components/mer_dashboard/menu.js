@@ -27,15 +27,13 @@ class Menu extends React.Component {
             price:'',
             description: '',
             items: [],
-            selctedItem: ''
+            selectedItem: ''
         }
 
         this.merchantId = this.props.session.id;
 
         this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
-
-        this.selectItem = this.selectItem.bind(this);
 
     }
 
@@ -48,8 +46,11 @@ class Menu extends React.Component {
     componentWillReceiveProps(nextProps) {
     }
 
-    selectItem(idx){
-        this.setState({selectItem: idx});
+    selectItem(item){
+        this.setState({name: item.name,
+                       category: item.category,
+                       price:item.price,
+                       description: item.description});
     }
 
 
@@ -132,8 +133,8 @@ class Menu extends React.Component {
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>
-                                    <a href="#editEmployeeModal" onClick={this.selectItem(idx)} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" onClick={this.selectItem(idx)} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="#editEmployeeModal" onClick={() => this.selectItem(item)} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteEmployeeModal" onClick={() => this.selectItem(item)} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>)
                           )
