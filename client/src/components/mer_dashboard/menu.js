@@ -35,6 +35,8 @@ class Menu extends React.Component {
         this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
 
+        this.baseState = this.state;
+
     }
 
     componentDidMount(){
@@ -50,7 +52,8 @@ class Menu extends React.Component {
         this.setState({name: item.name,
                        category: item.category,
                        price:item.price,
-                       description: item.description});
+                       description: item.description,
+                       selectedItem: item.id});
     }
 
 
@@ -76,9 +79,16 @@ class Menu extends React.Component {
 
     }
 
-    handleEditSubmit(e) {
-        e.preventDefault();
+    handleEditSubmit(itemId) {
 
+    }
+
+    handleDelete(itemId){
+
+    }
+
+    resetForm = () => {
+        this.setState(this.baseState);
     }
 
 
@@ -189,8 +199,8 @@ class Menu extends React.Component {
                             </div>					
                         </div>
                         <div className="modal-footer">
-                            <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" className="btn btn-success" value="Add"/>
+                            <input type="button" onClick={this.resetForm}  className="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                            <input type="submit" onClick={this.resetForm} className="btn btn-success" value="Add"/>
                         </div>
                     </form>
                 </div>
@@ -199,7 +209,7 @@ class Menu extends React.Component {
         <div id="editEmployeeModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                <form onSubmit={this.handleEditSubmit}>
+                <form onSubmit={() => this.handleEditSubmit(this.state.selectedItem)}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Edit Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -234,8 +244,8 @@ class Menu extends React.Component {
                             </div>					
                         </div>
                         <div className="modal-footer">
-                            <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" className="btn btn-success" value="Edit"/>
+                            <input type="button" onClick={this.resetForm} className="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                            <input type="submit" onClick={this.resetForm} className="btn btn-success" value="Edit"/>
                         </div>
                     </form>
                 </div>
@@ -244,7 +254,7 @@ class Menu extends React.Component {
         <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                    <form>
+                    <form onSubmit={() => this.handleDelete(this.state.selectedItem)}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Delete Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
