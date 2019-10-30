@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_MERCHANT } from '../actions/session_actions';
-import { RECEIVE_ITEM, RECEIVE_ITEMS } from '../actions/item_actions';
+import { RECEIVE_ITEM, RECEIVE_ITEMS, REMOVE_ITEM } from '../actions/item_actions';
 
 const initialState = Object.freeze({
     items: []

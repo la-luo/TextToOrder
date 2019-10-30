@@ -109,4 +109,28 @@ router.get('/:merchantId/items', (req, res) => {
 });
 
 
+router.delete('/delete-item/:itemId', async (req, res) => {
+
+
+  Item.findOneAndRemove({_id: req.params.itemId}, function(err, doc){
+    if (err) {
+      res.json(err);
+    } else {
+      console.log('delete from item list');
+      Merchant.findOneAndUpdate({_id: doc.merchant},{$pull: {'items': {_id: doc.id}}},  function(err, merchant){
+        if (err) {
+          res.json(err);
+        } else {
+          console.log('Item completely deleted!');
+          res.json(merchant.items)
+        }
+      });
+    }
+  });
+
+ 
+  
+});
+
+
 module.exports = router;

@@ -3,6 +3,12 @@ import axios from 'axios';
 export const RECEIVE_ITEM = 'RECEIVE_ITEM';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const RECEIVE_ITEMS = 'RECEIVE_ITEMS';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+
+export const removeItem = (itemId) => ({
+    type: REMOVE_ITEM,
+    itemId
+});
 
 export const receiveItem = newItem => ({
    type:  RECEIVE_ITEM,
@@ -27,6 +33,18 @@ export const createItem = itemData => dispatch => {
         );
 };
 
+export const deleteItem = (itemId) => dispatch => {
+    console.log('hit deletItem action');
+    axios
+        .delete(`api/merchants/delete-item/${itemId}`, itemId)
+        .then(res => dispatch(receiveItems(res.data)))
+        .catch(err => 
+            dispatch({
+                type:RECEIVE_ERRORS,
+                payload: err.response.data
+            }));
+};
+
 export const fetchItems = merchantId => dispatch => {
     axios
         .get(`api/merchants/${merchantId}/items`, merchantId)
@@ -38,3 +56,4 @@ export const fetchItems = merchantId => dispatch => {
             })
         );
 };
+

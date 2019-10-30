@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 
 class SessionForm extends React.Component {
@@ -10,7 +10,8 @@ class SessionForm extends React.Component {
             username: '',
             password: '',
             password2: '',
-            email: ''
+            email: '',
+            currentUser: 'noUser'
         };
 
         this.update = this.update.bind(this);
@@ -35,6 +36,29 @@ class SessionForm extends React.Component {
     render() {
         return (
         <div>
+            <nav className="navbar navbar-default navbar-expand-lg navbar-light">
+                <div className="navbar-header d-flex col">
+                    <a className="navbar-brand" href="/">Text To Order</a>  		
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" className="navbar-toggle navbar-toggler ml-auto">
+                        <span className="navbar-toggler-icon"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
+                    {this.state.currentUser==='noUser'? 
+                    <ul className="nav navbar-nav navbar-right ml-auto">
+                    <li className="nav-item"><Link className="nav-link" to='/merchants-login'>Sign In</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/merchants-signup'>Sign Up</Link></li>
+                    </ul>
+                    : 
+                    <div>
+                    <li className="nav-item"><Link className="nav-link" to='/merchants-signup'>Sign Up</Link></li>
+                    <li className="nav-item"><Link className="btn btn-primary" to='/#'>Logout</Link></li>
+                    </div>}		
+                </div>
+            </nav>
             {this.props.formType === 'signup'?
             <div className="signup-form">
                 <form onSubmit={this.handleSubmit}>

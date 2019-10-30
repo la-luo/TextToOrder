@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { createItem, fetchItems } from '../../actions/item_actions';
+import { createItem, fetchItems, deleteItem } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         createItem: item_data => dispatch(createItem(item_data)),
-        fetchItems: merchantId => dispatch(fetchItems(merchantId))
+        fetchItems: merchantId => dispatch(fetchItems(merchantId)),
+        deleteItem: (itemId) => dispatch(deleteItem(itemId))
     }
 
 }
@@ -49,11 +50,12 @@ class Menu extends React.Component {
     }
 
     selectItem(item){
+        console.log(item._id);
         this.setState({name: item.name,
                        category: item.category,
                        price:item.price,
                        description: item.description,
-                       selectedItem: item.id});
+                       selectedItem: item._id});
     }
 
 
@@ -84,7 +86,8 @@ class Menu extends React.Component {
     }
 
     handleDelete(itemId){
-
+        
+        this.props.deleteItem(itemId);
     }
 
     resetForm = () => {
@@ -200,7 +203,7 @@ class Menu extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <input type="button" onClick={this.resetForm}  className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" onClick={this.resetForm} className="btn btn-success" value="Add"/>
+                            <input type="submit" className="btn btn-success" value="Add"/>
                         </div>
                     </form>
                 </div>
@@ -245,7 +248,7 @@ class Menu extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <input type="button" onClick={this.resetForm} className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                            <input type="submit" onClick={this.resetForm} className="btn btn-success" value="Edit"/>
+                            <input type="submit" className="btn btn-success" value="Edit"/>
                         </div>
                     </form>
                 </div>
