@@ -21,6 +21,8 @@ const ItemSchema = new Schema({
     description: {
         type: String
     }
+}, {
+    versionKey: false 
 });
 
 const Item  = mongoose.model('Item', ItemSchema);

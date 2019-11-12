@@ -16,6 +16,8 @@ const UserSchema = new Schema({
         require: true
     },
     orders: [OrderSchema]
+}, {
+    versionKey: false 
 });
 
 const User = mongoose.model('User', UserSchema);

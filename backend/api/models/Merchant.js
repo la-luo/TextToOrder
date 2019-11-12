@@ -35,6 +35,8 @@ const MerchantSchema = new Schema({
         require: true
     },
     items: [ItemSchema]
+}, {
+    versionKey: false 
 });
 
 const Merchant = mongoose.model('Merchant', MerchantSchema);

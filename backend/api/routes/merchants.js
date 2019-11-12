@@ -48,8 +48,6 @@ router.post('/login', (req, res) => {
                           address: merchant.address,
                           intro: merchant.intro,
                           items: merchant.items};
-          
-          console.log(payload);
 
           // using jwt per the docs
           jwt.sign(
@@ -72,8 +70,7 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/add-item', 
-    passport.authenticate('jwt', {session: false}),
+router.post('/add-item', passport.authenticate('jwt', {session: false}),
     async (req, res) => {
         
         const { errors, isValid } = validateItemInput(req.body);
@@ -108,9 +105,27 @@ router.get('/:merchantId/items', (req, res) => {
       .catch(err => res.json(err));
 });
 
+router.put('/edit-item/:itemId', async (req, res) => {
+    
+  Item.findByIdAndUpdate(req.params.itemId, {$set: req.body}, function(err, doc){
+    if(err) {
+      res.json(err);
+    } else {
+      console.log('update item in item list!');
+      // the doc returned here is old item!
+      Merchant.updateOne({'items._id': req.params.itemId}, {$set: {'items.$': req.body}}, function(err, merchant){
+        if(err) {
+          res.json(err);
+        } else {
+          console.log('update item in merchant!');
+          res.json(merchant.items);
+        }
+      })
+    }
+  })
+});
 
 router.delete('/delete-item/:itemId', async (req, res) => {
-
 
   Item.findOneAndRemove({_id: req.params.itemId}, function(err, doc){
     if (err) {
@@ -122,14 +137,12 @@ router.delete('/delete-item/:itemId', async (req, res) => {
           res.json(err);
         } else {
           console.log('Item completely deleted!');
-          res.json(merchant.items)
+          res.json(merchant.items);
         }
       });
     }
   });
-
  
-  
 });
 
 

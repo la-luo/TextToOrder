@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { createItem, fetchItems, deleteItem } from '../../actions/item_actions';
+import { createItem, fetchItems, deleteItem, updateItem } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +13,8 @@ const mapDispatchToProps = dispatch => {
     return {
         createItem: item_data => dispatch(createItem(item_data)),
         fetchItems: merchantId => dispatch(fetchItems(merchantId)),
-        deleteItem: (itemId) => dispatch(deleteItem(itemId))
+        updateItem: itemData => dispatch(updateItem(itemData)),
+        deleteItem: itemId => dispatch(deleteItem(itemId))
     }
 
 }
@@ -50,7 +51,6 @@ class Menu extends React.Component {
     }
 
     selectItem(item){
-        console.log(item._id);
         this.setState({name: item.name,
                        category: item.category,
                        price:item.price,
@@ -83,6 +83,16 @@ class Menu extends React.Component {
 
     handleEditSubmit(itemId) {
 
+        const newItem = {
+            _id: itemId,
+            merchant: this.props.session.id,
+            name: this.state.name,
+            price: this.state.price,
+            category: this.state.category,
+            description: this.state.description
+        }
+
+        this.props.updateItem(newItem);
     }
 
     handleDelete(itemId){
@@ -110,7 +120,7 @@ class Menu extends React.Component {
                         </div>
                         <div className="col-sm-6">
                             <a href={`/menu/${this.merchantId}`} className="btn" data-toggle="modal"><i className="material-icons">restaurant_menu</i> <span>Preview Menu</span></a>	    
-                            <a href="#addEmployeeModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>					
+                            <a href="#addItemModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>					
                         </div>
                     </div>
                 </div>
@@ -146,8 +156,8 @@ class Menu extends React.Component {
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>
-                                    <a href="#editEmployeeModal" onClick={() => this.selectItem(item)} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" onClick={() => this.selectItem(item)} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="#editItemModal" onClick={() => this.selectItem(item)} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteItemModal" onClick={() => this.selectItem(item)} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>)
                           )
@@ -164,7 +174,7 @@ class Menu extends React.Component {
                     </ul>
                 </div>
            </div>
-        <div id="addEmployeeModal" className="modal fade">
+        <div id="addItemModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <form onSubmit={this.handleAddSubmit}>
@@ -209,7 +219,7 @@ class Menu extends React.Component {
                 </div>
             </div>
         </div>
-        <div id="editEmployeeModal" className="modal fade">
+        <div id="editItemModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <form onSubmit={() => this.handleEditSubmit(this.state.selectedItem)}>
@@ -254,7 +264,7 @@ class Menu extends React.Component {
                 </div>
             </div>
         </div>
-        <div id="deleteEmployeeModal" className="modal fade">
+        <div id="deleteItemModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <form onSubmit={() => this.handleDelete(this.state.selectedItem)}>
@@ -267,7 +277,7 @@ class Menu extends React.Component {
                             <p className="text-warning"><small>This action cannot be undone.</small></p>
                         </div>
                         <div className="modal-footer">
-                            <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                            <input type="button" onClick={this.resetForm} className="btn btn-default" data-dismiss="modal" value="Cancel"/>
                             <input type="submit" className="btn btn-danger" value="Delete"/>
                         </div>
                     </form>

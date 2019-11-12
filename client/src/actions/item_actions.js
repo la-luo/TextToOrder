@@ -18,7 +18,7 @@ export const receiveItem = newItem => ({
 export const receiveItems = items => ({
     type: RECEIVE_ITEMS,
     items
-})
+});
 
 
 export const createItem = itemData => dispatch => {
@@ -33,8 +33,19 @@ export const createItem = itemData => dispatch => {
         );
 };
 
+export const updateItem = itemData => dispatch => {
+    axios
+        .put(`api/merchants/edit-item/${itemData._id}`, itemData)
+        .then(res => dispatch(receiveItem(res.data)))
+        .catch(err => 
+            dispatch({
+                type: RECEIVE_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
 export const deleteItem = (itemId) => dispatch => {
-    console.log('hit deletItem action');
     axios
         .delete(`api/merchants/delete-item/${itemId}`, itemId)
         .then(res => dispatch(receiveItems(res.data)))

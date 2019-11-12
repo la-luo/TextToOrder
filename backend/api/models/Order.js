@@ -14,6 +14,8 @@ const OrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+}, {
+    versionKey: false 
 });
 
 const Order = mongoose.model('Order', OrderSchema);
