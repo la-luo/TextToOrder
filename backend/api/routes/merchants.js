@@ -112,7 +112,7 @@ router.put('/edit-item/:itemId', async (req, res) => {
       res.json(err);
     } else {
       console.log('update item in item list!');
-      // the doc returned here is old item!
+      // the doc returned here is old item! doc cannot be used to update the merchant below!
       Merchant.updateOne({'items._id': req.params.itemId}, {$set: {'items.$': req.body}}, function(err, merchant){
         if(err) {
           res.json(err);
