@@ -17,7 +17,7 @@ const MerAuth = ({ component: Component, path, merLoggedIn, exact }) => (
         !merLoggedIn ? (
             <Component {...props} />
         ) : (
-                <Redirect to="/merchants-dashboard" />
+                <Redirect to="/merchants/dashboard" />
             )
     )} />
 );

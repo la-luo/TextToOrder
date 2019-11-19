@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchItems} from '../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.session
+        items: state.items
     }
-}
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchItems: merchantId => dispatch(fetchItems(merchantId))
+    }
+};
 
 class PublicMenu extends React.Component {
     
@@ -17,6 +24,12 @@ class PublicMenu extends React.Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount(){
+        const merchantId = this.props.match.params.merchantId;
+
+        this.props.fetchItems(merchantId);
     }
 
 
@@ -181,4 +194,4 @@ class PublicMenu extends React.Component {
 }
 
 
-export default connect(mapStateToProps, null)(PublicMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(PublicMenu);

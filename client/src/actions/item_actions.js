@@ -23,7 +23,7 @@ export const receiveItems = items => ({
 
 export const createItem = itemData => dispatch => {
     axios
-        .post('api/merchants/add-item', itemData)
+        .post('add-item', itemData)
         .then(res => dispatch(receiveItem(res.data)))
         .catch(err => 
             dispatch({
@@ -35,7 +35,7 @@ export const createItem = itemData => dispatch => {
 
 export const updateItem = itemData => dispatch => {
     axios
-        .put(`api/merchants/edit-item/${itemData._id}`, itemData)
+        .put(`edit-item/${itemData._id}`, itemData)
         .then(res => dispatch(receiveItem(res.data)))
         .catch(err => 
             dispatch({
@@ -47,7 +47,7 @@ export const updateItem = itemData => dispatch => {
 
 export const deleteItem = (itemId) => dispatch => {
     axios
-        .delete(`api/merchants/delete-item/${itemId}`, itemId)
+        .delete(`delete-item/${itemId}`, itemId)
         .then(res => dispatch(receiveItems(res.data)))
         .catch(err => 
             dispatch({
@@ -58,7 +58,7 @@ export const deleteItem = (itemId) => dispatch => {
 
 export const fetchItems = merchantId => dispatch => {
     axios
-        .get(`api/merchants/${merchantId}/items`, merchantId)
+        .get(`${merchantId}/items`, merchantId)
         .then(res => dispatch(receiveItems(res.data)))
         .catch(err => 
             dispatch({

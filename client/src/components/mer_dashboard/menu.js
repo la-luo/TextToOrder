@@ -119,7 +119,7 @@ class Menu extends React.Component {
                             <h2>Manage Menu</h2>
                         </div>
                         <div className="col-sm-6">
-                            <a href={`/menu/${this.merchantId}`} className="btn" data-toggle="modal"><i className="material-icons">restaurant_menu</i> <span>Preview Menu</span></a>	    
+                            <a href={`/merchants/${this.merchantId}`} className="btn" data-toggle="modal"><i className="material-icons">restaurant_menu</i> <span>Preview Menu</span></a>	    
                             <a href="#addItemModal" className="btn" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>					
                         </div>
                     </div>

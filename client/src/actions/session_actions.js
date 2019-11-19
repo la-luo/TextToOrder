@@ -33,7 +33,7 @@ export const receiveMerchant = () => {
 
 export const merchantSignup = merchantData => dispatch => {
   axios
-    .post('api/merchants/signup', merchantData)
+    .post('signup', merchantData)
     .then(res => {
       dispatch(receiveMerchant());
     })
@@ -47,7 +47,7 @@ export const merchantSignup = merchantData => dispatch => {
 
 export const merchantLogin = merData => dispatch => {
   axios
-    .post('api/merchants/login', merData)
+    .post('login', merData)
     .then(res => {
       // Save to localStorage
       const { token } = res.data;
@@ -63,7 +63,7 @@ export const merchantLogin = merData => dispatch => {
     .catch(err =>
       dispatch({
         type: RECEIVE_ERRORS,
-        payload: err.response.data
+        payload: err
       })
     );
 };

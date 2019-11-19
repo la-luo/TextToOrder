@@ -23,8 +23,8 @@ app.use(logger("dev"));
 
 app.use(passport.initialize());
 
-app.use('/api/users', usersRoutes);
-app.use('/api/merchants', merchantsRoutes);
+app.use('api/users', usersRoutes);
+app.use('/merchants', merchantsRoutes);
 app.use('/', smsRoutes);
 
 app.use(function(req, res) {

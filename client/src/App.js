@@ -25,7 +25,7 @@ window.dispatch = store.dispatch;
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
-  if (window.location.pathname === "/merchants-dashboard") {
+  if (window.location.pathname === "/merchants/dashboard") {
     store.dispatch(receiveCurrentMerchant(decoded));
   } else {
     store.dispatch(receiveCurrentUser(decoded));
@@ -34,9 +34,9 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
 
-    if (window.location.pathname === "/merchants-dashboard") {
+    if (window.location.pathname === "/merchants/dashboard") {
       store.dispatch(logoutMerchant());
-      window.location.href = '/merchants-login';
+      window.location.href = '/merchants/login';
     } else {
       store.dispatch(logoutUser());
       window.location.href = '/login';
@@ -51,15 +51,14 @@ class App extends Component {
           <div className="App">
             <Switch>
             <Route exact path="/" component={Splash}  />
-            <Route exact path="/menu/:merchantId" component={PublicMenu}  />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
-            <MerAuthRoute exact path="/merchants-login" component={merLogin} />
-            <MerAuthRoute exact path="/merchants-signup" component={merSignup} />
-            <MerProtectedRoute exact path="/merchants-dashboard" component={merDashboard} />
-            <Route exact path="/merchant-menu" component={Menu} />
-            <Redirect to="/merchants-login" />
+            <MerAuthRoute exact path="/merchants/login" component={merLogin} />
+            <MerAuthRoute exact path="/merchants/signup" component={merSignup} />
+            <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
+            <Route exact path="/merchants/:merchantId" component={PublicMenu}  />
+            <Redirect to="/merchants/login" />
             </Switch>
           </div>
         </BrowserRouter>
