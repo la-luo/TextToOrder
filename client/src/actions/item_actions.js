@@ -28,7 +28,7 @@ export const createItem = itemData => dispatch => {
         .catch(err => 
             dispatch({
                type: RECEIVE_ERRORS,
-               payload: err.response.data
+               payload: err
             })
         );
 };
@@ -40,7 +40,7 @@ export const updateItem = itemData => dispatch => {
         .catch(err => 
             dispatch({
                 type: RECEIVE_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 };
@@ -52,7 +52,7 @@ export const deleteItem = (itemId) => dispatch => {
         .catch(err => 
             dispatch({
                 type:RECEIVE_ERRORS,
-                payload: err.response.data
+                payload: err
             }));
 };
 
@@ -63,7 +63,7 @@ export const fetchItems = merchantId => dispatch => {
         .catch(err => 
             dispatch({
                 type: RECEIVE_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         );
 };
