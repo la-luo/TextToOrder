@@ -1,12 +1,20 @@
 import React from 'react';
 import Menu from './menu';
 import { connect } from 'react-redux';
+import { fetchItems } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
     return {
-        session: state.session
+        session: state.session,
+        items: state.items
     }
 };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchItems: merchantId => dispatch(fetchItems(merchantId))
+    }
+}
 
 class merDashboard extends React.Component {
     constructor(props) {
@@ -34,6 +42,10 @@ class merDashboard extends React.Component {
         this.showSettings = this.showSettings.bind(this);
 
 
+    }
+
+    componentDidMount(){
+        this.props.fetchItems(this.props.session.id);
     }
 
     showHome(e) {
@@ -155,4 +167,4 @@ class merDashboard extends React.Component {
 
 }
 
-export default connect(mapStateToProps, null)(merDashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(merDashboard);

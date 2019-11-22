@@ -8,12 +8,6 @@ const initialState = Object.freeze({
 const itemsReducer = (state = initialState, action) => {
     Object.freeze(state);
     switch(action.type) {
-        case RECEIVE_CURRENT_MERCHANT: 
-        if (Object.values(action.payload).length === 0) {
-            return initialState;
-          } else {
-            return action.payload.items;
-            }
         case RECEIVE_ITEM:
             return [...state, action.newItem];
         case RECEIVE_ITEMS:

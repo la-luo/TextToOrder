@@ -16,7 +16,6 @@ const mapDispatchToProps = dispatch => {
         updateItem: itemData => dispatch(updateItem(itemData)),
         deleteItem: itemId => dispatch(deleteItem(itemId))
     }
-
 }
 
 class Menu extends React.Component {

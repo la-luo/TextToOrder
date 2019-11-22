@@ -70,6 +70,7 @@ router.post('/login', (req, res) => {
   });
 });
 
+
 router.post('/add-item', passport.authenticate('jwt', {session: false}),
     async (req, res) => {
         
@@ -104,6 +105,24 @@ router.get('/:merchantId/items', (req, res) => {
       .then(merchant => res.json(merchant.items))
       .catch(err => res.json(err));
 });
+
+router.get('/basic/:merchantId', (req, res) => {
+  console.log('merchant id', req.params.merchantId);
+  Merchant.findById(req.params.merchantId)
+  .then(merchant => {
+    const payload = {
+      id: merchant.id,
+      storename: merchant.storename,
+      phone: merchant.phone,
+      address: merchant.address,
+      intro: merchant.intro
+    }
+    console.log('merchant basic payload', payload);
+    return res.status(200).json(payload);
+  })
+  .catch(err => res.json(err));
+});
+
 
 router.put('/edit-item/:itemId', async (req, res) => {
     

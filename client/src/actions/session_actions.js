@@ -68,6 +68,21 @@ export const merchantLogin = merData => dispatch => {
     );
 };
 
+export const fetchBasicMerchant = merchantId => dispatch => {
+  axios
+    .get(`basic/${merchantId}`, merchantId)
+    .then(res => {
+      console.log('fetch basic merchant info', res.data);
+      dispatch(receiveCurrentMerchant(res.data));
+    })
+    .catch(err => 
+      dispatch({
+        type: RECEIVE_ERRORS,
+        payload: err
+      })
+    );
+};
+
 export const signupUser = userData => dispatch => {
   axios
     .post('api/users/signup', userData)

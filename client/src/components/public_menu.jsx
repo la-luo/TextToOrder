@@ -2,16 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchItems} from '../actions/item_actions';
+import { fetchBasicMerchant } from '../actions/session_actions';
 
 const mapStateToProps = (state) => {
     return {
-        items: state.items
+        items: state.items,
+        session: state.session
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchItems: merchantId => dispatch(fetchItems(merchantId))
+        fetchItems: merchantId => dispatch(fetchItems(merchantId)),
+        fetchBasicMerchant: merchantId => dispatch(fetchBasicMerchant(merchantId))
     }
 };
 
@@ -31,6 +34,7 @@ class PublicMenu extends React.Component {
         const merchantId = this.props.match.params.merchantId;
 
         this.props.fetchItems(merchantId);
+        this.props.fetchBasicMerchant(merchantId);
 
     }
 
@@ -88,8 +92,10 @@ class PublicMenu extends React.Component {
             <div className="container">
     <div className="row">
         <div className="col-12 mx-auto text-center ">
-            <h1 className="mt-0 text-primary">Our Menu</h1>
-            <p className="lead">Begin with a selection from our award winning beverage menu or choose a wine from our extensive wine list. Our wine list features over 100 different vintages and has received the chamber of commerce award of excellence.</p>
+            <h1 className="mt-0 text-primary">{this.props.session.storename} {} Menu</h1>
+            <br/>
+            <p className="lead">{this.props.session.intro}</p>
+            <br/>
         </div>
         {
             itemsDict.Specials.length > 0 && 
@@ -161,20 +167,22 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Mains.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Mains</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
+        }
+        {
+            itemsDict.Mains.length > 0 && itemsDict.Mains.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline">{item.name}</h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
                 </div>
             </div>
+            ))
         }
          {
             itemsDict.Desserts.length > 0 && 
@@ -195,20 +203,22 @@ class PublicMenu extends React.Component {
         }
          {
             itemsDict.Drinks.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Drinks</h3>
                     <hr className="accent my-5"/>
-                </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
+                </div>   
+        }
+        {
+            itemsDict.Drinks.length > 0 && itemsDict.Drinks.map((item, idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline">{item.name}</h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
                 </div>
             </div>
+            ))
         }
         <div className="col-6 mx-auto">
             <div className="card card-body text-center">
