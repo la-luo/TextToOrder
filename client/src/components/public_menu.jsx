@@ -28,6 +28,7 @@ class PublicMenu extends React.Component {
         }
 
         this.itemsByCategory = this.itemsByCategory.bind(this);
+        
     }
 
     componentDidMount(){
@@ -79,6 +80,7 @@ class PublicMenu extends React.Component {
 
     render() {
         const items = this.props.items;
+        const phone = this.props.session.phone;
 
         if (typeof items == "undefined" || items == null || items.length == null
         || items.length === 0) return <div />;
@@ -97,74 +99,87 @@ class PublicMenu extends React.Component {
             <p className="lead">{this.props.session.intro}</p>
             <br/>
         </div>
+         {/* Specials */}
         {
             itemsDict.Specials.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Specials</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
+        }
+         {
+            itemsDict.Specials.length > 0 && itemsDict.Specials.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
                 </div>
             </div>
+            ))
         }
+        {/* Appetizers */}
         {
             itemsDict.Appetizers.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Appetizers</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
-                </div>
-            </div>
         }
         {
+            itemsDict.Appetizers.length > 0 && itemsDict.Appetizers.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
+                </div>
+            </div>
+            ))
+        }
+        {/* Breakfast */}
+        {
             itemsDict.Breakfast.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Breakfast</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
-                </div>
-            </div>
         }
         {
+            itemsDict.Breakfast.length > 0 && itemsDict.Breakfast.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
+                </div>
+            </div>
+            ))
+        }
+        {/* Lunch */}
+        {
             itemsDict.Lunch.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Lunch</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
+        }
+        {
+            itemsDict.Lunch.length > 0 && itemsDict.Lunch.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
                 </div>
             </div>
+            ))
         }
+        {/* Mains */}
         {
             itemsDict.Mains.length > 0 && 
                 <div className="col-12 mt-4">
@@ -177,30 +192,34 @@ class PublicMenu extends React.Component {
             <div className="card-columns">
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline">{item.name}</h6>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
                     <p className="small">{item.description}</p>
                     <span className="font-weight-bold small"></span>
                 </div>
             </div>
             ))
         }
+         {/* Desserts */}
          {
             itemsDict.Desserts.length > 0 && 
-            <div>
                 <div className="col-12 mt-4">
                     <h3 className="text-center">Desserts</h3>
                     <hr className="accent my-5"/>
                 </div>
-                <div className="card-columns">
-                    <div className="card card-body">
-                        <span className="float-right font-weight-bold">$17.95</span>
-                        <h6 className="text-underline">Fat Tuesday Salad</h6>
-                        <p className="small">New Orleans style hot sliced Cajun chicken breast with mixed greens, tomatoes, cucumbers and hard-cooked eggs with warm, spicy honey mustard dressing topped with crumbled bacon..</p>
-                        <span className="font-weight-bold small"></span>
-                    </div>
+        }
+        {
+            itemsDict.Desserts.length > 0 && itemsDict.Desserts.map((item,idx) => (
+            <div className="card-columns">
+                <div className="card card-body">
+                    <span className="float-right font-weight-bold">{item.price}</span>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
+                    <p className="small">{item.description}</p>
+                    <span className="font-weight-bold small"></span>
                 </div>
             </div>
+            ))
         }
+        {/* Drinks */}
          {
             itemsDict.Drinks.length > 0 && 
                 <div className="col-12 mt-4">
@@ -213,25 +232,14 @@ class PublicMenu extends React.Component {
             <div className="card-columns">
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline">{item.name}</h6>
+                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
                     <p className="small">{item.description}</p>
                     <span className="font-weight-bold small"></span>
                 </div>
             </div>
             ))
         }
-        <div className="col-6 mx-auto">
-            <div className="card card-body text-center">
-                <h5 className="text-uppercase">Tuesday Only!</h5>
-                <h6>Albondigas Soup</h6>
-                <p className="small">
-                    A steaming cup or bowl of Mexican meatball &amp; vegetable soup garnished with crispy tortilla strips and fresh cheddar-Jack cheese. If you like Mexican food try this!</p>
-                <span className="float-right font-weight-bold">$7</span>
-            </div>
-        </div>
-        <div className="col-12 mt-4">
-            <hr className="accent my-5"/>
-        </div>
+       
     </div>
 </div>
 
