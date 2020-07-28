@@ -100,13 +100,15 @@ router.post('/add-item', passport.authenticate('jwt', {session: false}),
             .catch(err => res.json(err));
 });
 
-router.get('/:merchantId/items', (req, res) => {
+router.get('/:merchantId/items', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
       Merchant.findById(req.params.merchantId)
       .then(merchant => res.json(merchant.items))
       .catch(err => res.json(err));
 });
 
-router.get('/basic/:merchantId', (req, res) => {
+router.get('/basic/:merchantId', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
   console.log('merchant id', req.params.merchantId);
   Merchant.findById(req.params.merchantId)
   .then(merchant => {
@@ -124,7 +126,8 @@ router.get('/basic/:merchantId', (req, res) => {
 });
 
 
-router.put('/edit-item/:itemId', async (req, res) => {
+router.put('/edit-item/:itemId', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
     
   Item.findByIdAndUpdate(req.params.itemId, {$set: req.body}, function(err, doc){
     if(err) {
@@ -144,7 +147,8 @@ router.put('/edit-item/:itemId', async (req, res) => {
   })
 });
 
-router.delete('/delete-item/:itemId', async (req, res) => {
+router.delete('/delete-item/:itemId', passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
 
   Item.findOneAndRemove({_id: req.params.itemId}, function(err, doc){
     if (err) {

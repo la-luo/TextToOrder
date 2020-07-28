@@ -12,7 +12,7 @@ class Splash extends React.Component {
         super(props);
 
         this.state = {
-            currentUser: 'noUser',
+            currentUser: '',
 
         }
 
@@ -26,7 +26,7 @@ class Splash extends React.Component {
 
 
     render() {
-        console.log(this.props.currentUser);
+        //console.log(this.props.currentUser);
 
         return (
             <div>
@@ -41,7 +41,7 @@ class Splash extends React.Component {
 		</button>
 	</div>
 	<div id="navbarCollapse" className="collapse navbar-collapse justify-content-start">
-		{this.state.currentUser==='noUser'? 
+		{localStorage.getItem('jwtToken ') === null ? 
 		<ul className="nav navbar-nav navbar-right ml-auto">
          <li className="nav-item"><Link className="nav-link" to='/login'>Sign In</Link></li>
 		 <li className="nav-item"><Link className="btn btn-primary get-started-btn mt-1 mb-1" to='/signup'>Sign Up</Link></li>

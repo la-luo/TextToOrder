@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from './menu';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../actions/item_actions';
+import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {
@@ -17,6 +18,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 class merDashboard extends React.Component {
+    
     constructor(props) {
         super(props);
         var session = this.props.session;
@@ -40,7 +42,7 @@ class merDashboard extends React.Component {
         this.showMenu = this.showMenu.bind(this);
         this.showOrders = this.showOrders.bind(this);
         this.showSettings = this.showSettings.bind(this);
-
+        this.logout = this.logout.bind(this);
 
     }
 
@@ -68,6 +70,12 @@ class merDashboard extends React.Component {
         this.setState({ showHome: false, showMenu: false, showOrders: false, showSettings: true});
     }
 
+    logout(e) {
+        localStorage.clear();
+        this.setState({});
+        this.props.history.push('/');
+    }
+ 
 
 
     render() {
@@ -112,8 +120,14 @@ class merDashboard extends React.Component {
              <input className="form-control" placeholder={address} />
              <label>Introduction</label>
              <textarea className="form-control" placeholder={intro} />
-
-             <input type="submit" className="btn btn-profile-success" value="Update your profile"/>
+             
+             <div className="row">
+                <div className="col-md-9">
+                </div>
+                <div className="col-md-3">
+                    <input type="submit" className="btn btn-profile-success" value="Update"/>
+                </div>
+             </div>
 
             </form>);
         } else if (showMenu) {
@@ -150,8 +164,14 @@ class merDashboard extends React.Component {
                                         </div>
                                     </nav>
                                 </div>
-                                <div className="col-md-5">
-                                    <div className="header-rightside"></div>
+                                <div className="col-md-4">
+                                    <div className="header-middle">
+                                    </div>
+                                </div>
+                                <div className="col-md-1">
+                                    <div className="header-rightside">
+                                        <button className="btn btn-primary" onClick={this.logout}>Logout</button>
+                                    </div>
                                 </div>
                             </header>
                         </div>
