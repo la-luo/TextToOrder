@@ -1,5 +1,6 @@
+require('dotenv').config();
 module.exports = {
-    mongoURI: 'mongodb://laluo101:laluo101@ds145415.mlab.com:45415/text_to_order',
+    mongoURI: process.env.MONGO_URI,
     secretOrPrivateKey: 'secret',
     sessionSecretKey: 'asefrhilsk'
 };
