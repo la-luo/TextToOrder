@@ -1,7 +1,7 @@
 .splash {
     float: right;
     width: 50%;
-    height: 1000px;
+    height: 580px;
     background: url(./texting.gif) no-repeat;
     background-size: contain;
     margin-top: -20px;
@@ -16,6 +16,20 @@
         font-size: 96px;
       }
   }
+
+.find-business {
+    h2{
+        padding-top: 0px;
+        padding-left: 50px;
+        padding-bottom: 30px;
+    }
+
+}
+
+footer {
+    padding:50px;
+
+}
 
 section:after {
     content: "";
