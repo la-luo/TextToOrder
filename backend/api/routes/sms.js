@@ -16,7 +16,7 @@ router.post('/sms/:phoneNumber', (req, res) => {
     Merchant.findOne({ phone: req.params.phoneNumber }).then(merchant => {
       
       if (merchant) {
-        twiml.message(`Hi, thank you for visiting ${merchant.storename}. Please text us 'd' or 'p' to inform us whether it is for delivery or pickup.`);
+        twiml.message(`Hi, thank you for visiting ${merchant.storename}. Here is the menu http://a4d0d5751075.ngrok.io/merchants/${merchant.id}`);
   
         res.writeHead(200, { 'Content-Type': 'text/xml' });
         res.end(twiml.toString());

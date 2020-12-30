@@ -100,14 +100,14 @@ router.post('/add-item', passport.authenticate('jwt', {session: false}),
             .catch(err => res.json(err));
 });
 
-router.get('/:merchantId/items', passport.authenticate('jwt', {session: false}),
+router.get('/:merchantId/items',
   async (req, res) => {
       Merchant.findById(req.params.merchantId)
       .then(merchant => res.json(merchant.items))
       .catch(err => res.json(err));
 });
 
-router.get('/basic/:merchantId', passport.authenticate('jwt', {session: false}),
+router.get('/basic/:merchantId',
   async (req, res) => {
   console.log('merchant id', req.params.merchantId);
   Merchant.findById(req.params.merchantId)

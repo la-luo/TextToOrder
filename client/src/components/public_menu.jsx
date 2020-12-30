@@ -92,7 +92,7 @@ class PublicMenu extends React.Component {
         return (
             <div>
             <div className="container">
-    <div className="row">
+        <div className="row">
         <div className="col-12 mx-auto text-center ">
             <h1 className="mt-0 text-primary">{this.props.session.storename} {} Menu</h1>
             <br/>
@@ -109,7 +109,7 @@ class PublicMenu extends React.Component {
         }
          {
             itemsDict.Specials.length > 0 && itemsDict.Specials.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -129,7 +129,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Appetizers.length > 0 && itemsDict.Appetizers.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -149,7 +149,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Breakfast.length > 0 && itemsDict.Breakfast.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -169,7 +169,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Lunch.length > 0 && itemsDict.Lunch.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -189,7 +189,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Mains.length > 0 && itemsDict.Mains.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -209,7 +209,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Desserts.length > 0 && itemsDict.Desserts.map((item,idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
@@ -229,7 +229,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Drinks.length > 0 && itemsDict.Drinks.map((item, idx) => (
-            <div className="card-columns">
+            <div className="card-columns" key={idx}>
                 <div className="card card-body">
                     <span className="float-right font-weight-bold">{item.price}</span>
                     <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
