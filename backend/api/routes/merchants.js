@@ -119,7 +119,7 @@ router.get('/basic/:merchantId',
       address: merchant.address,
       intro: merchant.intro
     }
-    console.log('merchant basic payload', payload);
+    console.log('Merchant basic info:', payload);
     return res.status(200).json(payload);
   })
   .catch(err => res.json(err));

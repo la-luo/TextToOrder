@@ -18,6 +18,19 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
+const Item = ({idx, item, phone}) => 
+    <div className="card-columns" key={idx}>
+        <div className="card card-body">
+            <span className="float-right font-weight-bold">{item.price}</span>
+            <h5 className="text-underline">{item.name}</h5>
+            <p className="small">{item.description}</p>
+            <a href={`sms:${phone}; ?&body=Add '${item.name}'`}>Add</a>
+            {' | '}
+            <a href={`sms:${phone}; ?&body=Remove '${item.name}'`}>Remove</a>
+            <span className="font-weight-bold small"></span>
+        </div>
+    </div>      
+
 class PublicMenu extends React.Component {
     
     constructor(props) {
@@ -92,13 +105,13 @@ class PublicMenu extends React.Component {
         return (
             <div>
             <div className="container">
-        <div className="row">
-        <div className="col-12 mx-auto text-center ">
-            <h1 className="mt-0 text-primary">{this.props.session.storename} {} Menu</h1>
-            <br/>
-            <p className="lead">{this.props.session.intro}</p>
-            <br/>
-        </div>
+            <div className="row">
+            <div className="col-12 mx-auto text-center ">
+                <h1 className="mt-0 text-primary">{this.props.session.storename} {} Menu</h1>
+                <br/>
+                <p className="lead">{this.props.session.intro}</p>
+                <br/>
+            </div>
          {/* Specials */}
         {
             itemsDict.Specials.length > 0 && 
@@ -109,14 +122,7 @@ class PublicMenu extends React.Component {
         }
          {
             itemsDict.Specials.length > 0 && itemsDict.Specials.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
         {/* Appetizers */}
@@ -129,14 +135,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Appetizers.length > 0 && itemsDict.Appetizers.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
         {/* Breakfast */}
@@ -149,14 +148,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Breakfast.length > 0 && itemsDict.Breakfast.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
         {/* Lunch */}
@@ -169,14 +161,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Lunch.length > 0 && itemsDict.Lunch.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
         {/* Mains */}
@@ -189,14 +174,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Mains.length > 0 && itemsDict.Mains.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
          {/* Desserts */}
@@ -209,14 +187,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Desserts.length > 0 && itemsDict.Desserts.map((item,idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
         {/* Drinks */}
@@ -229,14 +200,7 @@ class PublicMenu extends React.Component {
         }
         {
             itemsDict.Drinks.length > 0 && itemsDict.Drinks.map((item, idx) => (
-            <div className="card-columns" key={idx}>
-                <div className="card card-body">
-                    <span className="float-right font-weight-bold">{item.price}</span>
-                    <h6 className="text-underline"><a href={`sms:${phone}; ?&body=Add ${item.name}`}>{item.name}</a></h6>
-                    <p className="small">{item.description}</p>
-                    <span className="font-weight-bold small"></span>
-                </div>
-            </div>
+                <Item key={idx} item={item} idx={idx} phone={phone} />
             ))
         }
        
