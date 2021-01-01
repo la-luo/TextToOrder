@@ -8,7 +8,7 @@ const styles = {
   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI"',
 }
 
-const CollectForm = ({order}) => {
+const CollectForm = ({order, history}) => {
   const [form, setForm] = useState({});
   const [isLoaded, scriptLoaded] = useState(false);
   const orderCode = String(order._id);
@@ -98,6 +98,7 @@ const CollectForm = ({order}) => {
       {},
       (status, response) => {
         console.log(status, response);
+        history.push('/success');
       },
       (error) => {
         console.log(error);
@@ -175,7 +176,7 @@ class Checkout extends React.Component {
           return <div />;
         } else {
           return (
-            <CollectForm order={this.props.order}/>
+            <CollectForm order={this.props.order} history={this.props.history}/>
           )
         }  
     }

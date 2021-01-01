@@ -45,6 +45,22 @@ if (localStorage.jwtToken) {
   }
 }
 
+const CheckoutSuccess = () => (
+  <div className="checkout container-fluid">
+    <div className="row d-flex">
+      <div className="card"></div>
+        <div className="row-title">
+          <span class="material-icons success-icon">
+            done_outline
+          </span>
+        </div>
+        <div className="row">
+          <h3 className="row-title success-message">Thank you for your purchase</h3>
+        </div>
+    </div>
+  </div>
+)
+
 class App extends Component {
   render() {
     return <Provider store={store}>
@@ -60,6 +76,7 @@ class App extends Component {
             <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
             <Route exact path="/merchants/:merchantId" component={PublicMenu}  />
             <Route exact path="/checkout/:orderId" component={Checkout} />
+            <Route exact path="/success" component={CheckoutSuccess}/>
             <Redirect to="/merchants/login" />
             </Switch>
           </div>
