@@ -6,6 +6,7 @@ const dbRoute = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
 const usersRoutes = require('./api/routes/users');
 const merchantsRoutes = require('./api/routes/merchants');
+const orderRoutes = require('./api/routes/order');
 const smsRoutes = require('./api/routes/sms');
 const passport = require('passport');
 require('./config/passport')(passport);
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 
 app.use('api/users', usersRoutes);
 app.use('/merchants', merchantsRoutes);
+app.use('/orders', orderRoutes);
 app.use('/', smsRoutes);
 
 app.use(function(req, res) {

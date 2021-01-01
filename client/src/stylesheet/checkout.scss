@@ -1,4 +1,5 @@
 .checkout {
+    background-color: #359c88;
     .container-fluid {
         color: #000;
         overflow-x: hidden;
@@ -8,6 +9,8 @@
     }
     
     .card {
+        background-color: #f0f3f2;
+        margin: auto;
         border-radius: 30px;
         box-shadow: 0px 4px 8px 0px #085747;
         margin-top: 50px;
@@ -15,17 +18,33 @@
         width: 400px;
         padding: 0px;
     }
+
+    .checkout-form{
+        padding: 20px;
+        padding-top: 0px;
+    }
+
+    .row-title {
+        margin: auto;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .row{
+        margin: auto;
+        text-align: left;
+    }
     
     .form-field {
         color: #fff;
     }
     
     .border-line {
-        border-right: 1px solid #BDBDBD
+        border-right: 1px solid #BDBDBD;
     }
     
     .text-sm {
-        font-size: 13px
+        font-size: 13px;
     }
     
     .text-md {

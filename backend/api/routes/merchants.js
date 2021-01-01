@@ -155,7 +155,7 @@ router.delete('/delete-item/:itemId', passport.authenticate('jwt', {session: fal
       res.json(err);
     } else {
       console.log('delete from item list');
-      Merchant.findOneAndUpdate({_id: doc.merchant},{$pull: {'items': {_id: doc.id}}},  function(err, merchant){
+      Merchant.findOneAndUpdate({_id: doc.merchant}, {$pull: {'items': {_id: doc.id}}},  function(err, merchant){
         if (err) {
           res.json(err);
         } else {
