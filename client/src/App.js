@@ -18,6 +18,7 @@ import merSignup from './components/mer_session_form/signup_container';
 import merLogin from './components/mer_session_form/login_container';
 import merDashboard from './components/mer_dashboard/dashboard';
 import Menu from './components/mer_dashboard/menu';
+import Checkout from './components/checkout';
 
 window.getState = store.getState;
 window.dispatch = store.dispatch;
@@ -58,6 +59,7 @@ class App extends Component {
             <MerAuthRoute exact path="/merchants/signup" component={merSignup} />
             <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
             <Route exact path="/merchants/:merchantId" component={PublicMenu}  />
+            <Route exact path="/checkout/:orderId" component={Checkout} />
             <Redirect to="/merchants/login" />
             </Switch>
           </div>

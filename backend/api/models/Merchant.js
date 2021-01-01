@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ItemSchema = require('./Item').ItemSchema;
+const OrderSchema = require('./Order').OrderSchema;
 
 const MerchantSchema = new Schema({
     storename: {
@@ -34,6 +35,7 @@ const MerchantSchema = new Schema({
         type: String,
         require: true
     },
+    orders: [OrderSchema],
     items: [ItemSchema]
 }, {
     versionKey: false 

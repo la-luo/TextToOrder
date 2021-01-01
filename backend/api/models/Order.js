@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ItemSchema = require('./Item').ItemSchema;
 
 const OrderSchema = new Schema({
-    totalPrice: {
+    total: {
         type: Number,
         min: 0
     },
@@ -10,10 +11,18 @@ const OrderSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    owner: {
+    merchant: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Merchant'
+    },
+    items: {
+        type: [String],
+        required: true
     }
+    // user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
 }, {
     versionKey: false 
 });

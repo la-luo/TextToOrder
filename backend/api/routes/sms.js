@@ -6,6 +6,7 @@ const keys = require('../../config/keys');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const bodyParser = require('body-parser');
 const Merchant = require('../models/Merchant');
+const Order = require('../models/Order').Order;
 const Item = require('../models/Item').Item;
 
 router.use(session({secret: keys.sessionSecretKey }));
@@ -54,16 +55,30 @@ router.post('/sms/:phoneNumber', (req, res) => {
               res.end(twiml.toString());
             })
           } else if (req.body.Body.match(/Place|place/g)) {
-            twiml.message(`Please pay via the link:`);
-            res.writeHead(200, { 'Content-Type': 'text/xml' });
-            res.end(twiml.toString());
+            // create order 
+              const newOrder = new Order({
+                  items: cart,
+                  merchant: merchant.id,
+                  total: total
+              });
+      
+              merchant.orders.push(newOrder);
+              merchant.save();
+              newOrder
+                  .save()
+                  .then(order => {
+                    twiml.message(`Please pay via the link: https://e9658d59e7f6.ngrok.io/checkout/${order.id}`);
+                    res.writeHead(200, { 'Content-Type': 'text/xml' });
+                    res.end(twiml.toString());
+                  })
+                  .catch(err => console.log(err));
           } else {
             twiml.message('Invalid message. Please try again.');
             res.writeHead(200, { 'Content-Type': 'text/xml' });
             res.end(twiml.toString());
           }
         } else {
-          twiml.message(`Hi, thank you for visiting ${merchant.storename}. Here is the menu http://502b2ccc98cf.ngrok.io/merchants/${merchant.id}`);
+          twiml.message(`Hi, thank you for visiting ${merchant.storename}. Here is the menu: http://e9658d59e7f6.ngrok.io/merchants/${merchant.id}`);
           req.session.cart = '';
           req.session.total = 0;
           res.writeHead(200, { 'Content-Type': 'text/xml' });
