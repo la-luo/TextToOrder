@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from './menu';
+import Orders from './orders';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../actions/item_actions';
 import { browserHistory } from 'react-router';
@@ -133,9 +134,9 @@ class merDashboard extends React.Component {
         } else if (showMenu) {
             dashboardContent = <Menu /> 
         } else if (showOrders) {
-            dashboardContent = <div>orders</div>
+            dashboardContent = <Orders /> 
         } else {
-            dashboardContent = <div>settings</div>
+            dashboardContent = <div>Coming soon...</div>
         }
 
         return (

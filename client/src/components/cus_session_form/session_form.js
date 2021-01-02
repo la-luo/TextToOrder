@@ -22,8 +22,8 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        // const user = Object.assign({}, this.state);
+        // this.props.processForm(user);
     };
 
     update(field) {
@@ -63,6 +63,7 @@ class SessionForm extends React.Component {
             <div className="signup-form">
                 <form onSubmit={this.handleSubmit}>
                     <h2>Sign Up</h2>
+                    <p>Not avaible yet...coming soon...</p>
                     <hr/>
                     <p>Please fill in this form to create an account!</p>
                     <div className="form-group">
@@ -99,6 +100,7 @@ class SessionForm extends React.Component {
         :<div className="signup-form">
             <form onSubmit={this.handleSubmit}> 
                 <h2>Log In</h2>
+                <p>Not avaible yet...coming soon...</p>
                 <hr/>
                 <p>Welcome back!</p>
                 <div className="form-group">
