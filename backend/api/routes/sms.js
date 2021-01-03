@@ -21,13 +21,14 @@ router.post('/sms/:phoneNumber', (req, res) => {
         if (req.session.cart !== undefined) {
           console.log('Session Status:', req.session);
           var cart = req.session.cart?req.session.cart.split(','):[];
-          var total = req.session.total;
+          var total = parseFloat(req.session.total);
           if (req.body.Body.includes('Add')) {
             var itemName = req.body.Body.match(/\'(.*?)\'/)[1];
             console.log('Captured item name:', itemName);
             Item.findOne({name: itemName, merchant: merchant.id})
             .then(item => {
-              total += item.price;
+              total += parseFloat(item.price);
+              total = total.toFixed(2);
               cart.push(itemName);
               req.session.cart = cart.join(',');
               req.session.total = total;

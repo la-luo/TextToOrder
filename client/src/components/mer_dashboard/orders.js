@@ -41,7 +41,7 @@ class Orders extends React.Component {
                           (
                             <tr key={idx}>
                                 <td>{order._id}</td>
-                                <td>{order.items}</td>
+                                <td>{order.items.join(', ')}</td>
                                 <td>{order.total}</td>
                                 <td>{order.timestamps}</td>
                             </tr>)
