@@ -10,6 +10,7 @@ const orderRoutes = require('./api/routes/order');
 const smsRoutes = require('./api/routes/sms');
 const passport = require('passport');
 var path = require("path");
+var cors = require('cors')
 require('./config/passport')(passport);
 
 mongoose 
@@ -18,13 +19,11 @@ mongoose
   .catch(err => console.log(err));
 
 var app = express();
-app.use(express.static(path.join(__dirname, '/../client/build')))
-
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(logger("dev"));
-
 app.use(passport.initialize());
 
 app.use('api/users', usersRoutes);
@@ -32,12 +31,13 @@ app.use('/merchants', merchantsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/', smsRoutes);
 
-app.get('*', function(_, res) {
-  res.sendFile(path.join(__dirname, '/../client/public/index.html'))
-});
-
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
+
+app.use(__dirname, express.static('../client/build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))});
 
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

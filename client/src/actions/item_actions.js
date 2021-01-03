@@ -60,7 +60,7 @@ export const fetchItems = merchantId => dispatch => {
     console.log('axios would try fetch items of merchant:', merchantId);
     axios
         .get(`${merchantId}/items`)
-        .then(res => {console.log(res);dispatch(receiveItems(res.data))})
+        .then(res => {dispatch(receiveItems(res.data))})
         .catch(err => 
             dispatch({
                 type: RECEIVE_ERRORS,
