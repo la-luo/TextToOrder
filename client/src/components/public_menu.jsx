@@ -5,6 +5,7 @@ import { fetchItems} from '../actions/item_actions';
 import { fetchBasicMerchant } from '../actions/session_actions';
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         items: state.items,
         session: state.session

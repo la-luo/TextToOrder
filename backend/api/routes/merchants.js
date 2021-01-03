@@ -103,6 +103,7 @@ router.post('/add-item', passport.authenticate('jwt', {session: false}),
 
 router.get('/:merchantId/items',
   async (req, res) => {
+    console.log('Get items from backend');
       Merchant.findById(req.params.merchantId)
       .then(merchant => res.json(merchant.items))
       .catch(err => res.json(err));

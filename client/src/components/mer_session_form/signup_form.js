@@ -101,7 +101,7 @@ class SignupForm extends React.Component {
                         <input type="submit" className="btn btn-primary btn-lg mer-input" value="Get Started" />
                     </div>
                 </form>
-                { this.props.session.info && <div class="alert alert-success">Thanks for contacting! {this.props.session.info} </div>}
+                { this.props.session.info && <div className="alert alert-success">Thanks for contacting! {this.props.session.info} </div>}
             </div>
         </div>
         )}
