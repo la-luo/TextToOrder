@@ -96,34 +96,35 @@ class merDashboard extends React.Component {
         if (showHome) {
             dashboardContent = (<form>
              <div className="row">
-                 <div className="col-md-6 mb-3">
+                 <div className="col-md-3 mb-3">
                      <label>Email</label>
                      <input disabled className="form-control" placeholder={email} />
                  </div>
-                 <div className="col-md-6 mb-3">
+                 <div className="col-md-3 mb-3">
                      <label>Phone</label>
                      <input disabled className="form-control" placeholder={phone} />
                  </div>
              </div>
             <div className="row">
-                 <div className="col-md-6 mb-3">
+                 <div className="col-md-3 mb-3">
                      <label>First Name</label>
                      <input className="form-control" placeholder={firstname} />
                  </div>
-                 <div className="col-md-6 mb-3">
+                 <div className="col-md-3 mb-3">
                      <label>Last Name</label>
                      <input className="form-control" placeholder={lastname} />
                  </div>
              </div>
-             <label>Store Name</label>
-             <input className="form-control" placeholder={storename} />
-             <label>Address</label>
-             <input className="form-control" placeholder={address} />
-             <label>Introduction</label>
-             <textarea className="form-control" placeholder={intro} />
-             
+             <div className="row col-md-8 long-input">
+                <label>Store Name</label>
+                <input className="form-control" placeholder={storename} />
+                <label>Address</label>
+                <input className="form-control" placeholder={address} />
+                <label>Introduction</label>
+                <textarea className="form-control" placeholder={intro} />
+             </div>
              <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-6">
                 </div>
                 <div className="col-md-3">
                     <input type="submit" className="btn btn-profile-success" value="Update"/>
