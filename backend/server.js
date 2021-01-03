@@ -9,6 +9,7 @@ const merchantsRoutes = require('./api/routes/merchants');
 const orderRoutes = require('./api/routes/order');
 const smsRoutes = require('./api/routes/sms');
 const passport = require('passport');
+var path = require("path");
 require('./config/passport')(passport);
 
 mongoose 
