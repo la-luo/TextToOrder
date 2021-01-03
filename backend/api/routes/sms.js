@@ -67,7 +67,7 @@ router.post('/sms/:phoneNumber', (req, res) => {
               newOrder
                   .save()
                   .then(order => {
-                    twiml.message(`Please pay via the link: https://12fa6ee632cd.ngrok.io/checkout/${order.id}`);
+                    twiml.message(`Please pay via the link: https://text-to-order.herokuapp.com/checkout/${order.id}`);
                     res.writeHead(200, { 'Content-Type': 'text/xml' });
                     res.end(twiml.toString());
                   })
@@ -78,7 +78,7 @@ router.post('/sms/:phoneNumber', (req, res) => {
             res.end(twiml.toString());
           }
         } else {
-          twiml.message(`Hi, thank you for visiting ${merchant.storename}. Here is the menu: http://12fa6ee632cd.ngrok.io/merchants/${merchant.id}`);
+          twiml.message(`Hi, thank you for visiting ${merchant.storename}. Here is the menu: https://text-to-order.herokuapp.com/merchants/${merchant.id}. Please click buttons on menu to add/remove items and place order.`);
           req.session.cart = '';
           req.session.total = 0;
           res.writeHead(200, { 'Content-Type': 'text/xml' });

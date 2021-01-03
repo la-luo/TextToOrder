@@ -87,7 +87,7 @@ table.table td a {
     outline: none !important;
 }
 table.table td a:hover {
-    color: #2196F3;
+    color: #179b81;
 }
 table.table td a.edit {
     color: #FFC107;
@@ -123,10 +123,10 @@ table.table .avatar {
     color: #666;
 }	
 .pagination li.active a, .pagination li.active a.page-link {
-    background: #03A9F4;
+    background: #179b81;
 }
 .pagination li.active a:hover {        
-    background: #0397d6;
+    background: #179b81;
 }
 .pagination li.disabled i {
     color: #ccc;
@@ -179,8 +179,8 @@ table.table .avatar {
     transform: rotateZ(45deg);
 }
 .custom-checkbox input[type="checkbox"]:checked + label:before {
-    border-color: #03A9F4;
-    background: #03A9F4;
+    border-color: #179b81;
+    background: #179b81;
 }
 .custom-checkbox input[type="checkbox"]:checked + label:after {
     border-color: #fff;
@@ -236,3 +236,61 @@ table.table .avatar {
 .category-picker{
     width: 240px;
 }
+
+.place-order-btn{
+    font-size: large;
+    a:hover {
+        text-decoration: underline;
+      }
+      
+      a:active {
+        text-decoration: underline;
+      }
+}
+
+.menu {
+    a{
+        color: #179b81;
+    }
+    a:hover {
+        text-decoration: none;
+      }
+      
+    a:active {
+        text-decoration: none;
+    }
+
+    .order-btn a{
+        font-size: small;
+    }
+    .order-btn:link, .order-btn:visited{
+        font-size: small;
+        background-color: #179b81;
+        border-radius: 4px;
+        color: white;
+        width: 70px;
+        padding: 2px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .order-btn:hover, .order-btn:active {
+        background-color:#198e76;
+    }
+
+    .place:link {
+        padding: 5px;
+        width: 100px;
+    }
+
+    .order-row{
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+    .text-primary{
+        color: #179b81;
+    }
+
+}
+

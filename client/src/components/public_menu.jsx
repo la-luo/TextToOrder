@@ -25,9 +25,9 @@ const Item = ({idx, item, phone}) =>
             <span className="float-right font-weight-bold">{item.price}</span>
             <h5 className="text-underline">{item.name}</h5>
             <p className="small">{item.description}</p>
-            <a href={`sms:${phone}; ?&body=Add '${item.name}'`}>Add</a>
+            <a className="order-btn" href={`sms:${phone}; ?&body=Add '${item.name}'`}>Add</a>
             {' | '}
-            <a href={`sms:${phone}; ?&body=Remove '${item.name}'`}>Remove</a>
+            <a className="order-btn" href={`sms:${phone}; ?&body=Remove '${item.name}'`}>Remove</a>
             <span className="font-weight-bold small"></span>
         </div>
     </div>      
@@ -104,7 +104,7 @@ class PublicMenu extends React.Component {
         console.log(itemsDict);
 
         return (
-            <div>
+            <div className="menu">
             <div className="container">
             <div className="row">
             <div className="col-12 mx-auto text-center ">
@@ -206,6 +206,8 @@ class PublicMenu extends React.Component {
         }
        
     </div>
+    <div className="row order-row"><a className="order-btn place" href={`sms:${phone}; ?&body=Place Order`}>Place Order</a></div>
+    
 </div>
 
             </div>
