@@ -31,10 +31,6 @@ app.use('/merchants', merchantsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/', smsRoutes);
 
-app.use(function(req, res) {
-  res.status(404).send({url: req.originalUrl + ' not found'})
-});
-
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))});
 
