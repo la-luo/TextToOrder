@@ -3,7 +3,6 @@ import Menu from './menu';
 import Orders from './orders';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../actions/item_actions';
-import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {

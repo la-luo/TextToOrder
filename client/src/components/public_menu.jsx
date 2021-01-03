@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchItems} from '../actions/item_actions';
 import { fetchBasicMerchant } from '../actions/session_actions';

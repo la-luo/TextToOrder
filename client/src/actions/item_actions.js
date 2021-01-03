@@ -34,9 +34,10 @@ export const createItem = itemData => dispatch => {
 };
 
 export const updateItem = itemData => dispatch => {
+    console.log('update item...', itemData._id);
     axios
         .put(`edit-item/${itemData._id}`, itemData)
-        .then(res => dispatch(receiveItem(res.data)))
+        .then(res => {console.log('update item action result:', res.data); dispatch(receiveItems(res.data))})
         .catch(err => 
             dispatch({
                 type: RECEIVE_ERRORS,

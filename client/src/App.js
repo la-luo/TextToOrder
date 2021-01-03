@@ -17,7 +17,6 @@ import cusDashboard from './components/cus_dashboard/dashboard';
 import merSignup from './components/mer_session_form/signup_container';
 import merLogin from './components/mer_session_form/login_container';
 import merDashboard from './components/mer_dashboard/dashboard';
-import Menu from './components/mer_dashboard/menu';
 import Checkout from './components/checkout';
 
 window.getState = store.getState;

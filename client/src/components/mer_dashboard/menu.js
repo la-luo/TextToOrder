@@ -35,19 +35,17 @@ class Menu extends React.Component {
 
         this.handldChange = this.handldChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
-
+        this.handleEditSubmit = this.handleEditSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.baseState = this.state;
 
     }
 
     componentDidMount(){
         this.props.fetchItems(this.merchantId);
-        this.setState({items: this.props.items});
-        
+        this.setState({items: this.props.items});       
     }
 
-    componentWillReceiveProps(nextProps) {
-    }
 
     selectItem(item){
         this.setState({name: item.name,
@@ -80,10 +78,13 @@ class Menu extends React.Component {
 
     }
 
-    handleEditSubmit(itemId) {
+    handleEditSubmit(e) {
+        e.preventDefault();
 
-        const newItem = {
-            _id: itemId,
+        console.log(this.state.selectedItem);
+
+        const updatedItem = {
+            _id: this.state.selectedItem,
             merchant: this.props.session.id,
             name: this.state.name,
             price: this.state.price,
@@ -91,12 +92,15 @@ class Menu extends React.Component {
             description: this.state.description
         }
 
-        this.props.updateItem(newItem);
+        this.props.updateItem(updatedItem);
+        
+
     }
 
-    handleDelete(itemId){
+    handleDelete(e){
+        e.preventDefault();
         
-        this.props.deleteItem(itemId);
+        this.props.deleteItem(this.state.selectedItem);
     }
 
     resetForm = () => {
@@ -126,12 +130,6 @@ class Menu extends React.Component {
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>
-                                <span className="custom-checkbox">
-                                    <input type="checkbox" id="selectAll" />
-                                    <label htmlFor="selectAll"></label>
-                                </span>
-                            </th>
                             <th>Name</th>
                             <th>Category</th>
                             <th>Description</th>
@@ -144,12 +142,7 @@ class Menu extends React.Component {
                         {items.map((item, idx) => 
                           (
                             <tr key={idx}>
-                                <td>
-                                    <span className="custom-checkbox">
-                                        <input type="checkbox" id="checkbox1" name="options[]" value="1"/>
-                                        <label htmlFor="checkbox1"></label>
-                                    </span>
-                                </td>
+
                                 <td>{item.name}</td>
                                 <td>{item.category}</td>
                                 <td>{item.description}</td>
@@ -164,7 +157,7 @@ class Menu extends React.Component {
                     </tbody>
                 </table>
                 <div className="clearfix">
-                    <div className="hint-text">Showing <b>5</b> out of <b>15</b> entries</div>
+                    <div className="hint-text">Showing <b>{items.length}</b> out of <b>{items.length}</b> entries</div>
                     <ul className="pagination">
                         <li className="page-item disabled"><a href="#">Previous</a></li>
                         <li className="page-item"><a href="#" className="page-link">1</a></li>
@@ -189,7 +182,7 @@ class Menu extends React.Component {
                                 <div className="input-group-prepend">
                                     <label className="input-group-text" htmlFor="inputGroupSelect01">Category</label>
                                 </div>
-                                <select onChange={this.handldChange('category')} className="form-control" id="inputGroupSelect01">
+                                <select onChange={this.handldChange('category')} className="form-control" id="inputGroupSelect02">
                                     <option defaultValue>Choose...</option>
                                     <option value="Appetizers">Appetizers</option>
                                     <option value="Breakfast">Breakfast</option>
@@ -220,7 +213,7 @@ class Menu extends React.Component {
         <div id="editItemModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                <form onSubmit={() => this.handleEditSubmit(this.state.selectedItem)}>
+                <form onSubmit={this.handleEditSubmit}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Edit Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -265,7 +258,7 @@ class Menu extends React.Component {
         <div id="deleteItemModal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-content">
-                    <form onSubmit={() => this.handleDelete(this.state.selectedItem)}>
+                    <form onSubmit={this.handleDelete}>
                         <div className="modal-header">						
                             <h4 className="modal-title">Delete Item</h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
