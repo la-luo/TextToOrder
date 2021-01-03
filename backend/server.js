@@ -18,7 +18,15 @@ mongoose
   .catch(err => console.log(err));
 
 var app = express();
-app.use(express.static(path.join(__dirname, '/../client/build')));
+app.use(express.static(path.join(__dirname, '/../client/build')))
+
+app.get('/', function(_, res) {
+  res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
