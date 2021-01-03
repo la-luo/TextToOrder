@@ -59,7 +59,7 @@ export const deleteItem = (itemId) => dispatch => {
 export const fetchItems = merchantId => dispatch => {
     console.log('axios would try fetch items of merchant:', merchantId);
     axios
-        .get(`${merchantId}/items`, merchantId)
+        .get(`${merchantId}/items`)
         .then(res => {console.log(res);dispatch(receiveItems(res.data))})
         .catch(err => 
             dispatch({

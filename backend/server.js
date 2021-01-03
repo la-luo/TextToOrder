@@ -20,14 +20,6 @@ mongoose
 var app = express();
 app.use(express.static(path.join(__dirname, '/../client/build')))
 
-app.get('/', function(_, res) {
-  res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-});
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -39,6 +31,10 @@ app.use('api/users', usersRoutes);
 app.use('/merchants', merchantsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/', smsRoutes);
+
+app.get('*', function(_, res) {
+  res.sendFile(path.join(__dirname, '/../client/public/index.html'))
+});
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
