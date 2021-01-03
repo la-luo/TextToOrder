@@ -101,6 +101,7 @@ class Menu extends React.Component {
         e.preventDefault();
         
         this.props.deleteItem(this.state.selectedItem);
+ 
     }
 
     resetForm = () => {

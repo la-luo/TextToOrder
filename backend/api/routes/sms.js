@@ -69,6 +69,7 @@ router.post('/sms/:phoneNumber', (req, res) => {
               newOrder
                   .save()
                   .then(order => {
+                    req.session = null;
                     twiml.message(`Please pay via the link: https://text-to-order.herokuapp.com/checkout/${order.id}`);
                     res.writeHead(200, { 'Content-Type': 'text/xml' });
                     res.end(twiml.toString());
