@@ -44,7 +44,8 @@ router.post('/sms/:phoneNumber', (req, res) => {
             .then(item => {
               const idx = cart.indexOf(itemName);
               if (idx > -1) {
-                total -= item.price;
+                total -= parseFloat(item.price);
+                total = total.toFixed(2);
                 req.session.total = total;
                 cart.splice(idx, 1);
                 req.session.cart = cart.join(',');
@@ -90,8 +91,8 @@ router.post('/sms/:phoneNumber', (req, res) => {
         res.writeHead(500, { 'Content-Type': 'text/xml' });
         res.end(twiml.toString());
       }
-    })
 
+    })
   });
   
 
