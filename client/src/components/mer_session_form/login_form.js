@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
 
         this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.autoFill = this.autoFill.bind(this);
+        this.autoFill = this.guestLogin.bind(this);
     }
 
 
@@ -31,9 +31,10 @@ class LoginForm extends React.Component {
         }) 
     }
 
-    autoFill(e){
+    guestLogin(e){
         e.preventDefault();
-        this.setState({email:'demo2021@gmail.com', password:'20192019'})
+        const guest = {email:'demo2021@gmail.com', password:'20192019'};
+        this.props.processForm(guest);
     }
 
 
@@ -83,7 +84,7 @@ class LoginForm extends React.Component {
                         <input type="submit" className="btn btn-primary btn-lg mer-input" value="Sign in to your account" />
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary btn-lg mer-input" onClick={this.autoFill}>Auto fill in</button>
+                        <button className="btn btn-primary btn-lg mer-input" onClick={this.guestLogin}>Guest Login</button>
                     </div>
                 </form>
             </div>
