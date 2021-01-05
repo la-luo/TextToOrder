@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
 
         this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.autoFill = this.guestLogin.bind(this);
+        this.guestLogin = this.guestLogin.bind(this);
     }
 
 
