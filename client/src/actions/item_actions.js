@@ -23,7 +23,7 @@ export const receiveItems = items => ({
 
 export const createItem = itemData => dispatch => {
     axios
-        .post('add-item', itemData)
+        .post('http://localhost:3001/merchants/add-item', itemData)
         .then(res => dispatch(receiveItem(res.data)))
         .catch(err => 
             dispatch({
@@ -36,7 +36,7 @@ export const createItem = itemData => dispatch => {
 export const updateItem = itemData => dispatch => {
     console.log('update item...', itemData._id);
     axios
-        .put(`edit-item/${itemData._id}`, itemData)
+        .put(`http://localhost:3001/merchants/edit-item/${itemData._id}`, itemData)
         .then(res => {console.log('update item action result:', res.data); dispatch(receiveItems(res.data))})
         .catch(err => 
             dispatch({
@@ -48,7 +48,7 @@ export const updateItem = itemData => dispatch => {
 
 export const deleteItem = (itemId) => dispatch => {
     axios
-        .delete(`delete-item/${itemId}`, itemId)
+        .delete(`http://localhost:3001/merchants/delete-item/${itemId}`, itemId)
         .then(res => dispatch(receiveItems(res.data)))
         .catch(err => 
             dispatch({
@@ -60,7 +60,7 @@ export const deleteItem = (itemId) => dispatch => {
 export const fetchItems = merchantId => dispatch => {
     console.log('axios would try fetch items of merchant:', merchantId);
     axios
-        .get(`${merchantId}/items`)
+        .get(`http://localhost:3001/merchants/${merchantId}/items`)
         .then(res => {dispatch(receiveItems(res.data))})
         .catch(err => 
             dispatch({

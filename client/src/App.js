@@ -72,7 +72,7 @@ class App extends Component {
             <ProtectedRoute exact path="/dashboard" component={cusDashboard} />
             <MerAuthRoute exact path="/merchants/login" component={merLogin} />
             <MerAuthRoute exact path="/merchants/signup" component={merSignup} />
-            <MerProtectedRoute exact path="/merchants/dashboard" component={merDashboard} />
+            <MerProtectedRoute path="/merchants/dashboard" component={merDashboard} />
             <Route exact path="/merchants/:merchantId" component={PublicMenu}  />
             <Route exact path="/checkout/:orderId" component={Checkout} />
             <Route exact path="/success" component={CheckoutSuccess}/>

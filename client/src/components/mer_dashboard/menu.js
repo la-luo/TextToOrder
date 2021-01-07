@@ -42,6 +42,7 @@ class Menu extends React.Component {
     }
 
     componentDidMount(){
+        console.log('frontend starts to fetch merchant items');
         this.props.fetchItems(this.merchantId);
         this.setState({items: this.props.items});       
     }
@@ -93,9 +94,8 @@ class Menu extends React.Component {
         }
 
         this.props.updateItem(updatedItem);
-        
-
     }
+
 
     handleDelete(e){
         e.preventDefault();

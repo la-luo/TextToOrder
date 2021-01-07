@@ -1,7 +1,9 @@
 import React from 'react';
 import Menu from './menu';
 import Orders from './orders';
+import Home from './home';
 import { connect } from 'react-redux';
+import { withRouter, Route, Link} from 'react-router-dom';
 import { fetchItems } from '../../actions/item_actions';
 
 const mapStateToProps = (state) => {
@@ -16,6 +18,10 @@ const mapDispatchToProps = dispatch => {
         fetchItems: merchantId => dispatch(fetchItems(merchantId))
     }
 }
+
+const Settings = () => (
+    <div>Coming soon...</div>
+)
 
 class merDashboard extends React.Component {
     
@@ -53,21 +59,25 @@ class merDashboard extends React.Component {
     showHome(e) {
         e.preventDefault();
         this.setState({ showHome: true, showMenu: false, showOrders: false, showSettings: false});
+        this.props.history.push('/merchants/dashboard');
     }
 
     showMenu(e) {
         e.preventDefault();
         this.setState({ showHome: false, showMenu: true, showOrders: false, showSettings: false});
+        this.props.history.push('/merchants/dashboard/menu');
     }
 
     showOrders(e) {
         e.preventDefault();
         this.setState({ showHome: false, showMenu: false, showOrders: true, showSettings: false});
+        this.props.history.push('/merchants/dashboard/orders');
     }
 
     showSettings(e) {
         e.preventDefault();
         this.setState({ showHome: false, showMenu: false, showOrders: false, showSettings: true});
+        this.props.history.push('/merchants/dashboard/settings');
     }
 
     logout(e) {
@@ -79,65 +89,10 @@ class merDashboard extends React.Component {
 
 
     render() {
-        const {email, 
-               phone,
+        const {
                firstname, 
                lastname, 
-               storename, 
-               address, 
-               intro,
-               showHome,
-               showMenu,
-               showOrders,
-               showSettings} = this.state;
-        let dashboardContent;
-
-        if (showHome) {
-            dashboardContent = (<form>
-             <div className="row">
-                 <div className="col-md-3 mb-3">
-                     <label>Email</label>
-                     <input disabled className="form-control" placeholder={email} />
-                 </div>
-                 <div className="col-md-3 mb-3">
-                     <label>Phone</label>
-                     <input disabled className="form-control" placeholder={phone} />
-                 </div>
-             </div>
-            <div className="row">
-                 <div className="col-md-3 mb-3">
-                     <label>First Name</label>
-                     <input className="form-control" placeholder={firstname} />
-                 </div>
-                 <div className="col-md-3 mb-3">
-                     <label>Last Name</label>
-                     <input className="form-control" placeholder={lastname} />
-                 </div>
-             </div>
-             <div className="row col-md-8 long-input">
-                <label>Store Name</label>
-                <input className="form-control" placeholder={storename} />
-                <label>Address</label>
-                <input className="form-control" placeholder={address} />
-                <label>Introduction</label>
-                <textarea className="form-control" placeholder={intro} />
-             </div>
-             <div className="row">
-                <div className="col-md-6">
-                </div>
-                <div className="col-md-3">
-                    <input type="submit" className="btn btn-profile-success" value="Update"/>
-                </div>
-             </div>
-
-            </form>);
-        } else if (showMenu) {
-            dashboardContent = <Menu /> 
-        } else if (showOrders) {
-            dashboardContent = <Orders /> 
-        } else {
-            dashboardContent = <div>Coming soon...</div>
-        }
+              } = this.state;
 
         return (
             <div className="home">
@@ -177,7 +132,10 @@ class merDashboard extends React.Component {
                             </header>
                         </div>
                         <div className="user-dashboard">
-                            {dashboardContent}
+                             <Route exact path={"/merchants/dashboard"} component={Home}/> 
+                             <Route exact path={"/merchants/dashboard/menu"} component={Menu}/> 
+                             <Route exact path={"/merchants/dashboard/orders"} component={Orders}/> 
+                             <Route exact path={"/merchants/dashboard/settings"} component={Settings}/> 
                         </div>
                     </div>
 
@@ -188,4 +146,4 @@ class merDashboard extends React.Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(merDashboard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(merDashboard));
