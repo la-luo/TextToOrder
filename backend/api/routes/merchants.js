@@ -131,19 +131,17 @@ router.get('/basic/:merchantId',
 router.put('/edit-item/:itemId', passport.authenticate('jwt', {session: false}),
   async (req, res) => {
   //should be optimized
-  Item.findByIdAndUpdate(req.params.itemId, {$set: req.body}, function(err, doc){
+  Item.findByIdAndUpdate(req.params.itemId, {$set: req.body}, {new: true}, function(err, newItem){
     if(err) {
       res.json(err);
     } else {
       console.log('update item in item list!');
-      Merchant.updateOne({'items._id': req.params.itemId}, {$set: {'items.$': req.body}}, function(err){
+      Merchant.findOneAndUpdate({'items._id': req.params.itemId}, {$set: {'items.$': req.body}}, {new: true}, function(err, newMer){
         if(err) {
           res.json(err);
         } else {
           console.log('update item in merchant!');
-          Merchant.findById(doc.merchant)
-          .then(merchant => res.json(merchant.items))
-          .catch(err => res.json(err));
+          res.json(newMer.items);
         }
       })
     }
@@ -158,14 +156,12 @@ router.delete('/delete-item/:itemId', passport.authenticate('jwt', {session: fal
       res.json(err);
     } else {
       console.log('delete from item list');
-      Merchant.findOneAndUpdate({_id: doc.merchant}, {$pull: {'items': {_id: doc.id}}},  function(err, old_merchant){
+      Merchant.findOneAndUpdate({_id: doc.merchant}, {$pull: {'items': {_id: doc.id}}}, {new: true}, function(err, newMerchant){
         if (err) {
           res.json(err);
         } else {
           console.log('Item completely deleted!');
-          Merchant.findById(doc.merchant)
-          .then(merchant => res.json(merchant.items))
-          .catch(err => res.json(err));
+          res.json(newMerchant.items);
         }
       });
     }
