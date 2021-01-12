@@ -8,19 +8,39 @@ const passport = require('passport');
 const Item = require('../models/Item').Item;
 const validateItemInput = require('../../validation/items');
 require("../../config/passport")(passport);
+const sendmail = require('sendmail')();
 
 
 router.post('/signup', (req, res) => {
 
   Merchant.findOne({ email: req.body.email }).then(merchant => {
-    console.log('hit server for merchant signup');
+    console.log('hit server for merchant signup: ', req.body);
     if (merchant) {
       errors.name = "A merchant has already registered with that email";
       return res.status(400).json(errors);
     } else {
-      res.json({
-        success: true
+      merchant = new Merchant({
+        email: req.body.email,
+        storename: req.body.storename,
+        address: req.body.storeaddress,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        active: false
       });
+
+      sendmail({
+        from: 'no-reply@text-to-order.com',
+        to: req.body.email,
+        subject: 'Email Verification',
+        html: 'Please click the following link to verify your email address:'
+      }, function(err, reply) {
+        console.log(err && err.stack);
+        console.dir(reply);
+        res.json({
+          success: true
+        });
+      })
+
     }
   });
 });

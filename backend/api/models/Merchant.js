@@ -35,6 +35,10 @@ const MerchantSchema = new Schema({
         type: String,
         require: true
     },
+    active: {
+        type: Boolean,
+        default: false
+    },
     orders: [OrderSchema],
     items: [ItemSchema]
 }, {
