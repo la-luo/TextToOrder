@@ -9,9 +9,10 @@ const Item = require('../models/Item').Item;
 const validateItemInput = require('../../validation/items');
 require("../../config/passport")(passport);
 const sendmail = require('sendmail')();
+const cryptoRandomString = require('crypto-random-string');
 
 
-router.post('/signup', (req, res) => {
+router.post('/signup', async (req, res) => {
 
   Merchant.findOne({ email: req.body.email }).then(merchant => {
     console.log('hit server for merchant signup: ', req.body);
@@ -19,23 +20,34 @@ router.post('/signup', (req, res) => {
       errors.name = "A merchant has already registered with that email";
       return res.status(400).json(errors);
     } else {
-      merchant = new Merchant({
+      const pin = cryptoRandomString({length: 12, type: 'base64'});
+      console.log('pin: ', pin);
+      newMerchant = new Merchant({
         email: req.body.email,
         storename: req.body.storename,
         address: req.body.storeaddress,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        active: false
+        active: false,
+        pin: pin
       });
+
+      newMerchant.save( err => {
+        if(err) {
+          console.log(err);
+        }
+      });
+
+      const emailLink = `https://text-to-order.herokuapp.com/merchants/activate/${pin}`
 
       sendmail({
         from: 'no-reply@text-to-order.com',
         to: req.body.email,
-        subject: 'Email Verification',
-        html: 'Please click the following link to verify your email address:'
+        subject: `Verify ${req.body.email} is your email address`,
+        html: `Confirm email address: ${emailLink}`
       }, function(err, reply) {
         console.log(err && err.stack);
-        console.dir(reply);
+        // console.dir(reply);
         res.json({
           success: true
         });
@@ -43,6 +55,23 @@ router.post('/signup', (req, res) => {
 
     }
   });
+});
+
+router.post('/activate/:pin', async (req, res) => { 
+    Merchant.findOne({ pin: req.params.pin})
+    .then(merchant => {
+      merchant.active = true;
+      merchant.save( err => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.status(200).send('You have verified your email. We will contact you soon!');
+        }
+      })
+    })
+    .catch(err => {
+      res.json(err);
+    })
 });
 
 router.post('/login', (req, res) => {

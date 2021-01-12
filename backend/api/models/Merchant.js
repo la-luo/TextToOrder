@@ -39,6 +39,10 @@ const MerchantSchema = new Schema({
         type: Boolean,
         default: false
     },
+    pin: {
+        type: String,
+        required: true
+    },
     orders: [OrderSchema],
     items: [ItemSchema]
 }, {
