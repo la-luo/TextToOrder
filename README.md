@@ -24,3 +24,4 @@ Twilio, React, Redux, Node.js, MongoDB, Heroku, VGS, Stripe
 1. optimize backend database query
 2. optimize merchant dashboard
 3. Checkout API to charge customer card with 3rd party like Stripe
+4. email verification (90%)
